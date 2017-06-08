@@ -23,7 +23,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         <br/><a href="https://twitter.com/symphonyOSS">Twitter</a>, <a href="http://linkedin.com/company/symphony-software-foundation">LinkedIN</a> and <a href="http://facebook.com/symphonyOSS">Facebook</a></p>
       </div>
 
-      <div class="grid grid-3">
+      <div id="filter-container" class="grid grid-3">
         <div id="statistics" class="grid-1 alpha header">
           <h1>Statistics</h1>
           <p>
@@ -36,21 +36,10 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
           <h1>Recently updated <a href="https://github.com/symphonyoss/repositories">View All on GitHub</a></h1>
           <ol id="recently-updated-repos"></ol>
         </div>
-
-          <div id="language-filter" class="grid-3 omega header">
-            <h1>Filter by language</h1>
-          </div>
-          <div id="projectState-filter" class="grid-3 omega header">
-            <h1>Filter by state</h1>
-          </div>
-          <div id="isProject-filter" class="grid-3 omega header">
-            <h1>Filter projects (true) or show all repositories (false)</h1>
-          </div>
-        </div>
-
       </div>
 
       <ol id="repos"></ol>
+
     </div>
     <script type="text/javascript">
 
@@ -124,8 +113,9 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
               repoName = ssfRepo["repositoryName"];
               ghRepo = repos.filter(function(repo) {
                 if (repo["name"] == repoName) {
-                  repo["isProject"] = ssfRepo["isProject"];
-                  repo["projectState"] = ssfRepo["projectState"];
+                  for (var prop in ssfRepo) {
+                    repo[prop] = ssfRepo[prop];
+                  }
                 }
               })[0];
             });
@@ -138,7 +128,6 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       function renderFilters(repos) {
         $.each(repos, function (i, repo) {
           // Build the filter mask
-          // TODO - this should only happens once
           filterFields.forEach (function (filterName) {
             var repoValue = repo[filterName];
             if (repoValue) {
@@ -149,19 +138,28 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       }
 
       function addRepoFilters(filterName, filterValue) {
-        console.log(filterName+" + "+filterValue);
         if (jQuery.type( filterValue ) === "string") {
-          key = "filter"+filterName+"-"+filterValue.replace('#','-sharp');
+          key = filterName+"-"+filterValue.replace('#','-sharp');
         } else {
-          key = "filter"+filterName+"-"+filterValue;
+          key = filterName+"-"+filterValue;
         }
-        var $item = $("<p>").attr("id",key).attr("style","display:inline");
+        filterKey = "filter-"+key;
+        containerKey = "filtercontainer-"+filterName;
 
-        var $name = $("<a>").attr("href", "#").click(function(){toggleFilter(this,filterName,filterValue)}).text(filterValue);
-        $item.append($("<span>").addClass("name").append($name));
+        if (!$( "#"+containerKey ).length) {
+          var $div = $("<div>").attr("id",containerKey).addClass("grid-3 omega header");
+          var $h1 = $("<h1>").text("Filter by "+filterName);
+          $div.append($h1);
+          $div.appendTo("#filter-container");
+        }
 
-        if (!$("#"+key).length) {
-          $item.appendTo("#"+filterName+"-filter");
+        if (!$("#"+filterKey).length) {
+          var $p = $("<p>").attr("id",filterKey).attr("style","display:inline");
+          var $name = $("<a>").attr("href", "#").text(filterValue).click(function(){
+            toggleFilter(this,filterName,filterValue)
+          });
+          $p.append($("<span>").addClass("name").append($name));
+          $p.appendTo("#"+containerKey);
         }
       }
 
@@ -191,7 +189,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         var ret = true;
         filterFields.forEach(function(filterName){
           repoValue = repo[filterName];
-          $('#'+filterName+'-filter > p > span > a').each(function(i) {
+          $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
             filterValue = $(this).text();
             console.log('filterName: '+filterName+' filterValue: '+filterValue+' repoValue: '+repoValue);
             if (isFilterSelected($(this)) && repoValue != filterValue) {
@@ -199,6 +197,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
             }
           });
         });
+        // console.log('showing repo '+repo['name']+'? '+ret);
         return ret;
       }
 
@@ -282,8 +281,6 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
         repo.hotness += weightForWatchers * repo.watchers / createdDelta;
       }
-
-
 
       // Util functions
 
