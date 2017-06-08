@@ -36,3 +36,7 @@ Now you can open your browser on [http://127.0.0.1:8080](http://127.0.0.1:8080)
 - Each filter value should be a visual toggle (enabled/disabled)
 - Improve UI of project list
 - Add more values to projects.json and more filters to the page
+
+## Credits
+
+This project was copied from http://twitter.github.io and heavily changed to adapt it to the Foundation needs.
