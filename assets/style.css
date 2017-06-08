@@ -1,3 +1,7 @@
+.selected {
+    background: #dddddd;
+}
+
 html {
   background: url("bg.png") repeat;
 }

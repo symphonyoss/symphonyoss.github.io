@@ -138,9 +138,15 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
 
       function toggleFilter(filterLink,filterName, filterValue) {
         console.log("toggling filter - "+filterName + ":"+filterValue);
+
+        if ($(filterLink).attr("class") && $(filterLink).attr("class").split(' ').indexOf('selected') > -1) {
+          $(filterLink).removeClass("selected");
+        } else {
+          $(filterLink).addClass("selected");
+        }
+
         //TODO - how to toggle a filter value?
-        // filterLink.css("background-color", "red");
-        filters[filterName][filterValue] = true;
+        filters[filterName][filterValue] = !filters[filterName][filterValue];
         console.log(filters);
         renderRepos(repos);
       }
