@@ -8,18 +8,8 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
     <link rel="stylesheet" type="text/css" href="assets/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/grid.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <!-- <link href="//abs.twimg.com/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
-    <!-- <link rel="mask-icon" sizes="any" href="https://abs.twimg.com/a/1468984401/img/t1/favicon.svg" color="#55acee"> -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Documentation for projects hosted by the Foundation.">
-
-    <!-- <meta name="twitter:url" content="https://symphonyoss.github.io" />
-    <meta name="twitter:creator" content="@symphonyOSS" />
-    <meta name="twitter:site" content="@symphonyOSS" />
-    <meta name="twitter:title" content="Symphony Software Foundation" />
-    <meta name="twitter:description" content="A listing of open source projects from the Symphony Software Foundation." />
-    <meta name="twitter:card" content="summary" /> -->
   </head>
   <body>
     <div id="wrapper" class="grid clearfix">
@@ -31,8 +21,6 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         <p>&nbsp;</p>
         <p>More about the Foundation:
         <br/><a href="https://twitter.com/symphonyOSS">Twitter</a>, <a href="http://linkedin.com/company/symphony-software-foundation">LinkedIN</a> and <a href="http://facebook.com/symphonyOSS">Facebook</a></p>
-        <!-- <p>&nbsp;</p>
-        <p><a href="https://brand.twitter.com/">Logos and other goodies</a></p> -->
       </div>
 
       <div class="grid grid-3">
@@ -40,8 +28,6 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
           <h1>Statistics</h1>
           <p>
             <a href="https://github.com/symphonyoss/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
-            <!-- <br>
-            <a href="https://github.com/symphonyoss?tab=members"><span id="num-members"><img src="assets/spinner.gif" /></span> members</a> -->
           </p>
           <p class="email"><a href="mailto:info@symphony.foundation">info@symphony.foundation</a></p>
         </div>
@@ -50,6 +36,18 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
           <h1>Recently updated <a href="https://github.com/symphonyoss/repositories">View All on GitHub</a></h1>
           <ol id="recently-updated-repos"></ol>
         </div>
+
+          <div id="language-filter" class="grid-3 omega header">
+            <h1>Filter by language</h1>
+          </div>
+          <div id="projectState-filter" class="grid-3 omega header">
+            <h1>Filter by state</h1>
+          </div>
+          <div id="isProject-filter" class="grid-3 omega header">
+            <h1>Filter projects (true) or show all repositories (false)</h1>
+          </div>
+        </div>
+
       </div>
 
       <ol id="repos"></ol>
@@ -72,6 +70,9 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
     <script type="text/javascript">
     (function ($, undefined) {
 
+      var repos = []
+      var filters = {}
+
       // Put custom repo URL's in this object, keyed by repo name.
       var repoUrls = {
         "symphony-java-client": "http://symphonyoss.github.io/symphony-java-client/",
@@ -91,6 +92,17 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
 
       function repoDescription(repo) {
         return repoDescriptions[repo.name] || repo.description;
+      }
+
+      function addRepoFilters(filterName, filterValues) {
+        $.each(filterValues,function (filterValue) {
+          var $item = $("<p>").attr("style","display:inline");
+
+          var $name = $("<a>").attr("href", "#").click(function(){toggleFilter(this,filterName,filterValue)}).text(filterValue);
+          $item.append($("<span>").addClass("name").append($name));
+
+          $item.appendTo("#"+filterName+"-filter");
+        });
       }
 
       function addRecentlyUpdatedRepo(repo) {
@@ -124,87 +136,135 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         $item.appendTo("#repos");
       }
 
-      function addRepos(repos, page) {
-        repos = repos || [];
-        page = page || 1;
+      function toggleFilter(filterLink,filterName, filterValue) {
+        console.log("toggling filter - "+filterName + ":"+filterValue);
+        //TODO - how to toggle a filter value?
+        // filterLink.css("background-color", "red");
+        filters[filterName][filterValue] = true;
+        console.log(filters);
+        renderRepos(repos);
+      }
 
-        var uri = "https://api.github.com/orgs/symphonyoss/repos?callback=?"
-                + "&per_page=100"
-                + "&page="+page;
+      function renderRepos(reposToRender) {
+        // Reset page
+        $("#repos").empty();
+        $("#recently-updated-repos").empty();
 
-        $.getJSON(uri, function (result) {
-          if (result.data && result.data.length > 0) {
-            repos = repos.concat(result.data);
-            addRepos(repos, page + 1);
-          }
-          else {
-            $(function () {
-              $("#num-repos").text(repos.length);
+        var filteredReposToRender = reposToRender.filter(function(repo) {
+          var ret = true;
+          $.each( filters, function( key, value ) {
+            // console.log("filtering repo " + repo["name"] + " with key: "+key+", repo value: "+ repo[key] + " and filter value "+value[repo[key]]);
+            if (repo[key] && repo[key] != "all" && !value[repo[key]]) {
+              ret = false;
+            }
+          });
+          return ret;
+        });
 
-              // Convert pushed_at to Date.
-              $.each(repos, function (i, repo) {
-                repo.pushed_at = new Date(repo.pushed_at);
+        $("#num-repos").text(filteredReposToRender.length);
 
-                var weekHalfLife  = 1.146 * Math.pow(10, -9);
+        // Convert pushed_at to Date.
+        $.each(filteredReposToRender, function (i, repo) {
+          ['language','projectState','isProject'].forEach (function (filterName) {
+            if (repo[filterName]) {
+              if (!filters[filterName]) {
+                filters[filterName] = {};
+                filters[filterName]["all"] = false;
+              }
+              filters[filterName][repo[filterName]] = false;
+            }
+          });
 
-                var pushDelta    = (new Date) - Date.parse(repo.pushed_at);
-                var createdDelta = (new Date) - Date.parse(repo.created_at);
+          repo.pushed_at = new Date(repo.pushed_at);
 
-                var weightForPush = 1;
-                var weightForWatchers = 1.314 * Math.pow(10, 7);
+          var weekHalfLife  = 1.146 * Math.pow(10, -9);
 
-                repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
-                repo.hotness += weightForWatchers * repo.watchers / createdDelta;
-              });
+          var pushDelta    = (new Date) - Date.parse(repo.pushed_at);
+          var createdDelta = (new Date) - Date.parse(repo.created_at);
 
-              // Sort by highest # of watchers.
-              repos.sort(function (a, b) {
-                if (a.hotness < b.hotness) return 1;
-                if (b.hotness < a.hotness) return -1;
-                return 0;
-              });
+          var weightForPush = 1;
+          var weightForWatchers = 1.314 * Math.pow(10, 7);
 
-              $.each(repos, function (i, repo) {
-                addRepo(repo);
-              });
+          repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
+          repo.hotness += weightForWatchers * repo.watchers / createdDelta;
+        });
 
-              // Sort by most-recently pushed to.
-              repos.sort(function (a, b) {
-                if (a.pushed_at < b.pushed_at) return 1;
-                if (b.pushed_at < a.pushed_at) return -1;
-                return 0;
-              });
-
-              $.each(repos.slice(0, 3), function (i, repo) {
-                addRecentlyUpdatedRepo(repo);
-              });
-            });
+        //Create filters, only first time this is invoked
+        $.each(filters,function (filterName) {
+          if ($( "#"+filterName+"-filter" ).children().length == 1) {
+            addRepoFilters(filterName,filters[filterName]);
           }
         });
-      }
-      addRepos();
 
-      // Disabled - not needed for now
-      //get total number of Twitter members
-      // function getNumMembers(page, numMembers) {
-      //   var page = page || 1;
-      //   var numMembers = numMembers || 0;
-      //   var membersUri = "https://api.github.com/orgs/symphonyoss/members?callback=?"
-      //     + "&per_page=100"
-      //     + "&page="+page;
-      //
-      //   $.getJSON(membersUri, function (result) {
-      //     if (result.data && result.data.length > 0) {
-      //       numMembers += result.data.length;
-      //       getNumMembers(page+1, numMembers);
-      //     } else {
-      //       $(function () {
-      //         $("#num-members").text(numMembers);
-      //       });
-      //     }
-      //   });
-      // }
-      // getNumMembers();
+        // Sort by highest # of watchers.
+        filteredReposToRender.sort(function (a, b) {
+          if (a.hotness < b.hotness) return 1;
+          if (b.hotness < a.hotness) return -1;
+          return 0;
+        });
+
+        $.each(filteredReposToRender, function (i, repo) {
+          addRepo(repo);
+        });
+
+        // Sort by most-recently pushed to.
+        filteredReposToRender.sort(function (a, b) {
+          if (a.pushed_at < b.pushed_at) return 1;
+          if (b.pushed_at < a.pushed_at) return -1;
+          return 0;
+        });
+
+        $.each(filteredReposToRender.slice(0, 3), function (i, repo) {
+          addRecentlyUpdatedRepo(repo);
+        });
+      }
+
+      function fetchAllRepos(page) {
+        page = page || 1;
+
+        //Mocked URI
+        var uri = "gh-projects-mock"+page+".json";
+        // var uri = "https://api.github.com/orgs/symphonyoss/repos?callback=?"
+        //         + "&per_page=100"
+        //         + "&page="+page;
+
+        $().ready(function () {
+          $.get(uri, function (result) {
+            //Mocked URI
+            if (result && result.length > 0) {
+            // if (result.data && result.data.length > 0) {
+              //Mocked URI
+              repos = repos.concat(result);
+              // repos = repos.concat(result.data);
+              fetchAllRepos(page + 1);
+            }
+            else {
+              $(function () {
+                enrichRepos(repos);
+              });
+            }
+          });
+        });
+      }
+
+      function enrichRepos(repos) {
+        $().ready(function () {
+          $.get("projects.json", function (ssfRepos) {
+            $.each( ssfRepos, function( ssfRepoIdx ) {
+              ssfRepo = ssfRepos[ssfRepoIdx];
+              repoName = ssfRepo["repositoryName"];
+              ghRepo = repos.filter(function(repo) {
+                if (repo["name"] == repoName) {
+                  repo["isProject"] = ssfRepo["isProject"];
+                  repo["projectState"] = ssfRepo["projectState"];
+                }
+              })[0];
+            });
+            renderRepos(repos);
+          })
+        });
+      }
+      fetchAllRepos();
 
       function randomItem(array) {
         return array[Math.floor(Math.random() * array.length)];
