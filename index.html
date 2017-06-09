@@ -62,7 +62,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       var repos = []
 
       //List of filter fields
-      var filterFields = ['language','projectState','isProject'];
+      var filterFields = ['language','projectState'];
 
       // Put custom repo URL's in this object, keyed by repo name.
       var repoUrls = {
@@ -70,6 +70,20 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         "symphony-java-sample-bots": "http://symphonyoss.github.io/symphony-java-sample-bots/",
         "ssf-parent-pom": "http://symphonyoss.github.io/ssf-parent-pom/",
         "clj-symphony": "https://symphonyoss.github.io/clj-symphony/"
+      };
+
+      var filterNameLabels = {
+        "projectState": "Project State",
+        "language": "Language"
+      };
+
+      var filterValueLabels = {
+        "projectState" : {
+          "INCUBATING": "Incubating",
+          "ACTIVE": "Active",
+          "LONG_TERM_MAINTENANCE": "Long Term Maintenance",
+          "ARCHIVED": "Archived"
+        }
       };
 
       // Put custom repo descriptions in this object, keyed by repo name.
@@ -148,14 +162,14 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
 
         if (!$( "#"+containerKey ).length) {
           var $div = $("<div>").attr("id",containerKey).addClass("grid-3 omega header");
-          var $h1 = $("<h1>").text("Filter by "+filterName);
+          var $h1 = $("<h1>").text(filterNameLabel(filterName));
           $div.append($h1);
           $div.appendTo("#filter-container");
         }
 
         if (!$("#"+filterKey).length) {
           var $p = $("<p>").attr("id",filterKey).attr("style","display:inline");
-          var $name = $("<a>").attr("href", "#").text(filterValue).click(function(){
+          var $name = $("<a>").attr("href", "#").text(filterValueLabel(filterName,filterValue)).click(function(){
             toggleFilter(this,filterName,filterValue)
           });
           $p.append($("<span>").addClass("name").append($name));
@@ -190,8 +204,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         filterFields.forEach(function(filterName){
           repoValue = repo[filterName];
           $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
-            filterValue = $(this).text();
-            console.log('filterName: '+filterName+' filterValue: '+filterValue+' repoValue: '+repoValue);
+            filterValue = resolveValueLabel(filterName,$(this).text());
             if (isFilterSelected($(this)) && repoValue != filterValue) {
               ret = false;
             }
@@ -237,7 +250,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       }
 
       function toggleFilter(filterLink,filterName, filterValue) {
-        console.log("toggling filter - "+filterName + ":"+filterValue);
+        // console.log("toggling filter - "+filterName + ":"+filterValue);
         if (isFilterSelected(filterLink)) {
           $(filterLink).removeClass("selected");
         } else {
@@ -288,6 +301,25 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         return repoUrls[repo.name] || repo.html_url;
       }
 
+      function filterNameLabel(filterName) {
+        return filterNameLabels[filterName] ? filterNameLabels[filterName] : "Filter by "+filterName;
+      }
+
+      function filterValueLabel(filterName,filterValue) {
+        return (filterValueLabels[filterName] && filterValueLabels[filterName][filterValue]) ? filterValueLabels[filterName][filterValue] : filterValue;
+      }
+
+      function resolveValueLabel(filterName,label) {
+        var ret = label;
+        if (filterValueLabels[filterName]) {
+          $.each(filterValueLabels[filterName],function(filterValue,filterLabel) {
+            if (filterLabel === label) {
+              ret = filterValue;
+            }
+          });
+        }
+        return ret;
+      }
 
       function repoDescription(repo) {
         return repoDescriptions[repo.name] || repo.description;
