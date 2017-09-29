@@ -357,10 +357,10 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
           projects.sort(function (a, b) {
             var a_updated = a['repos'].sort(function(a1,b1) {
               return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
-            })[0].pushed_at;
+            })[0].updated_at;
             var b_updated = b['repos'].sort(function(a1,b1) { 
               return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
-            })[0].pushed_at;
+            })[0].updated_at;
 
             if (a_updated < b_updated) return 1;
             if (b_updated < a_updated) return -1;
