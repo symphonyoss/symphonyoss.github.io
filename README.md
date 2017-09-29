@@ -4,7 +4,7 @@ This web page showcases the Symphony Software Foundation project, reporing usefu
 
 ## How does it work
 The index.html page uses JQuery to:
-- Fetch the metadata of all projects hosted on https://github.com/symphonyoss using [Gitbub organisations API](https://developer.github.com/v3/orgs/) (currently loading data from [gh-projects-mock1.json](gh-projects-mock1.json)) local file
+- Fetch the metadata of all projects hosted on https://github.com/symphonyoss using [Gitbub organisations API](https://developer.github.com/v3/orgs/); on line 99 of index.html you can switch to a mocked implementation that uses a local file, [gh-projects-mock1.json](gh-projects-mock1.json)
 - Fetch Foundation-specific project metadata from [projects.json](projects.json) local file; this content will be automatically updated by external bots managed by the Foundation
 - Merge Github and Foundation metadata into one single list of projects (stored in a global var called `repos`) that is rendered in the page content
 - Provide a list of fields on the top of the page that filters in/out projects rendered in the page
@@ -24,12 +24,16 @@ To run the website locally you need to have [NodeJS installed](https://nodejs.or
 
 ```
 npm install http-server -g
-git@github.com:symphonyoss/symphonyoss.github.io.git
+git clone git@github.com:symphonyoss/symphonyoss.github.io.git
 cd symphonyoss.github.io
 git checkout filtering
 http-server
 ```
 Now you can open your browser on [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+## Share URL
+
+You can also use http://rawgit.com/symphonyoss/symphonyoss.github.io/filtering/index.html to preview the page and share improvements.
 
 ## Roadmap
 - Complete work on filtering mechanism (work in progress)
