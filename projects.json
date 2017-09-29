@@ -1,324 +1,575 @@
-[{
-	"repositoryName": "App-Integrations-Universal",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "App-Integrations-Universal"
-}, {
-	"repositoryName": "bolt-javascript-bot",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bolt-javascript-bot"
-}, {
-	"repositoryName": "bot-fact",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-fact"
-}, {
-	"repositoryName": "bot-unfurl",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-unfurl"
-}, {
-	"repositoryName": "App-Integrations-Salesforce",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "App-Integrations-Salesforce"
-}, {
-	"repositoryName": "certificate-toolbox",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "JCurl",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "JCurl"
-}, {
-	"repositoryName": "Apps-Integrations-GoogleCalendar",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "Apps-Integrations-GoogleCalendar"
-}, {
-	"repositoryName": "App-Integrations-FE-Commons",
-	"isProject": false,
-	"projectState": "INCUBATING",
-	"projectName": "Integration Bridge"
-}, {
-	"repositoryName": "bot-v-for-symphony",
-	"isProject": true,
-	"projectState": "ARCHIVED",
-	"projectName": "bot-v-for-symphony",
-	"archiveDate": "2016-11-07"
-}, {
-	"repositoryName": "symphony-hubspot",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "symphony-hubspot"
-}, {
-	"repositoryName": "helpdesk-bot",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "helpdesk-bot"
-}, {
-	"repositoryName": "vote-bot",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "vote-bot"
-}, {
-	"repositoryName": "ssf-metadata",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "symphonyoss.github.io",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "bot-bot",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-bot"
-}, {
-	"repositoryName": "bot-butler",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-butler"
-}, {
-	"repositoryName": "bot-sidekick",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-sidekick"
-}, {
-	"repositoryName": "bot-jenkins",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-jenkins"
-}, {
-	"repositoryName": "python-symphony",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "python-symphony"
-}, {
-	"repositoryName": "bot-room-manager",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-room-manager"
-}, {
-	"repositoryName": "symphony-api-spec",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "symphony-api-spec"
-}, {
-	"repositoryName": "App-Integrations-Github",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "App-Integrations-Github"
-}, {
-	"repositoryName": "bot-sym-browser",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-sym-browser"
-}, {
-	"repositoryName": "hubot-symphony",
-	"isProject": true,
-	"projectState": "ACTIVE",
-	"projectName": "hubot-symphony",
-	"activationDate": "2016-11-29"
-}, {
-	"repositoryName": "extension-api-angular-service",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "extension-api-angular-service"
-}, {
-	"repositoryName": "ssf-enforcer-rules",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "ContainerJS",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "ContainerJS"
-}, {
-	"repositoryName": "clj-symphony",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "clj-symphony"
-}, {
-	"repositoryName": "SFE-Minuet-DesktopClient",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "Minuet"
-}, {
-	"repositoryName": "ssf-parent-pom",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "RestApiClient",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "RestApiClient"
-}, {
-	"repositoryName": "symphony-node-binding",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "symphony-node-binding"
-}, {
-	"repositoryName": "SymphonyElectron",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "SymphonyElectron"
-}, {
-	"repositoryName": "extension-api-examples",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "extension-api-examples"
-}, {
-	"repositoryName": "perc-webrtc",
-	"isProject": false,
-	"projectName": "WebRTC"
-}, {
-	"repositoryName": "App-Integrations-Core",
-	"isProject": false,
-	"projectState": "INCUBATING",
-	"projectName": "Integration Bridge"
-}, {
-	"repositoryName": "ssf-jar-resource-bundle",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "symphony-java-client",
-	"isProject": true,
-	"projectState": "ACTIVE",
-	"projectName": "symphony-java-client",
-	"activationDate": "2017-03-10"
-}, {
-	"repositoryName": "bot-woodhouse",
-	"isProject": true,
-	"projectState": "ARCHIVED",
-	"projectName": "bot-woodhouse",
-	"archiveDate": "2016-11-07"
-}, {
-	"repositoryName": "bot-greenhouse",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-greenhouse"
-}, {
-	"repositoryName": "clabot-config",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "embedding-api-examples",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "embedding-api-examples"
-}, {
-	"repositoryName": "App-Integrations-Jira",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "App-Integrations-Jira"
-}, {
-	"repositoryName": "metronome",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "metronome"
-}, {
-	"repositoryName": "SFE-DesktopClient-pgx",
-	"isProject": false,
-	"projectState": "INCUBATING",
-	"projectName": "Minuet"
-}, {
-	"repositoryName": "webrtc-e2e",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "WebRTC"
-}, {
-	"repositoryName": "messageml-utils",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "messageml-utils"
-}, {
-	"repositoryName": "App-Integrations-Trello",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "App-Integrations-Trello"
-}, {
-	"repositoryName": "bot-home-security-talking",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-home-security-talking"
-}, {
-	"repositoryName": "bot-jira",
-	"isProject": true,
-	"projectState": "ARCHIVED",
-	"projectName": "bot-jira",
-	"archiveDate": "2017-03-14"
-}, {
-	"repositoryName": "symphony-click2dial",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "symphony-click2dial"
-}, {
-	"repositoryName": "symphony-java-api",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "symphony-java-client"
-}, {
-	"repositoryName": "ScreenSnippet",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "ScreenSnippet"
-}, {
-	"repositoryName": "app-auth-example",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "app-auth-example"
-}, {
-	"repositoryName": "contrib-toolbox",
-	"isProject": false,
-	"projectName": "Foundation Infrastructure"
-}, {
-	"repositoryName": "bot-lunch-box",
-	"isProject": true,
-	"projectState": "ARCHIVED",
-	"projectName": "bot-lunch-box",
-	"archiveDate": "2016-11-07"
-}, {
-	"repositoryName": "bot-twilio",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-twilio"
-}, {
-	"repositoryName": "glue-symphony-rfq",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "glue-symphony-rfq"
-}, {
-	"repositoryName": "sprinkle-bulk-add-users",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "sprinkle-bulk-add-users"
-}, {
-	"repositoryName": "symfuny-chat-bot",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "symfuny-chat-bot"
-}, {
-	"repositoryName": "bot-faq",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "bot-faq"
-}, {
-	"repositoryName": "App-Integrations-Zapier",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "App-Integrations-Zapier"
-}, {
-	"repositoryName": "App-Integrations-Commons",
-	"isProject": true,
-	"projectState": "INCUBATING",
-	"projectName": "Integration Bridge"
-}, {
-	"repositoryName": "symphony-java-sample-bots",
-	"isProject": true,
-	"projectState": "LONG_TERM_MAINTENANCE",
-	"projectName": "symphony-java-sample-bots"
-}]
+{
+	"App-Integrations-Universal": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-25",
+		"repositoryName": "App-Integrations-Universal",
+		"projectState": "RELEASED",
+		"projectName": "App-Integrations-Universal",
+		"contributionDate": "2016-12-19",
+		"activationDate": "2017-06-12"
+	}],
+	"bolt-javascript-bot": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-49",
+		"repositoryName": "bolt-javascript-bot",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bolt-javascript-bot",
+		"contributionDate": "2017-03-20"
+	}],
+	"bot-fact": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-fact",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-fact",
+		"contributionDate": "2016-09-04"
+	}],
+	"bot-unfurl": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-27",
+		"repositoryName": "bot-unfurl",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-unfurl",
+		"contributionDate": "2016-09-27"
+	}],
+	"App-Integrations-Salesforce": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-25",
+		"repositoryName": "App-Integrations-Salesforce",
+		"projectState": "RELEASED",
+		"projectName": "App-Integrations-Salesforce",
+		"contributionDate": "2016-12-19",
+		"activationDate": "2017-06-12"
+	}],
+	"JCurl": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-91",
+		"repositoryName": "JCurl",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "JCurl",
+		"contributionDate": "2017-06-06"
+	}],
+	"Apps-Integrations-GoogleCalendar": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-88",
+		"repositoryName": "Apps-Integrations-GoogleCalendar",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "Apps-Integrations-GoogleCalendar",
+		"contributionDate": "2017-05-24"
+	}],
+	"Integration Bridge": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-26",
+		"repositoryName": "App-Integrations-Commons",
+		"projectState": "RELEASED",
+		"projectName": "Integration Bridge",
+		"contributionDate": "2016-12-21",
+		"activationDate": "2017-06-12"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-26",
+		"repositoryName": "App-Integrations-Core",
+		"projectState": "RELEASED",
+		"projectName": "Integration Bridge",
+		"contributionDate": "2016-12-15",
+		"activationDate": "2017-06-12"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-26",
+		"repositoryName": "App-Integrations-FE-Commons",
+		"projectState": "RELEASED",
+		"projectName": "Integration Bridge",
+		"contributionDate": "2017-03-27",
+		"activationDate": "2017-06-12"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-26",
+		"repositoryName": "Integrations-Docs",
+		"projectState": "RELEASED",
+		"projectName": "Integration Bridge",
+		"contributionDate": "2016-12-15",
+		"activationDate": "2017-06-12"
+	}],
+	"bot-v-for-symphony": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-v-for-symphony",
+		"isProject": true,
+		"projectState": "ARCHIVED",
+		"projectName": "bot-v-for-symphony",
+		"contributionDate": "2016-09-04",
+		"archiveDate": "2016-11-07"
+	}],
+	"symphony-hubspot": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-55",
+		"repositoryName": "symphony-hubspot",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "symphony-hubspot",
+		"contributionDate": "2017-03-17"
+	}],
+	"helpdesk-bot": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-2",
+		"repositoryName": "helpdesk-bot",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "helpdesk-bot",
+		"contributionDate": "2016-05-27"
+	}],
+	"vote-bot": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-73",
+		"repositoryName": "vote-bot",
+		"projectState": "INCUBATING",
+		"projectName": "vote-bot",
+		"contributionDate": "2017-05-04"
+	}],
+	"bot-bot": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-bot",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-bot",
+		"contributionDate": "2016-09-04"
+	}],
+	"bot-butler": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-butler",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-butler",
+		"contributionDate": "2016-09-04"
+	}],
+	"bot-sidekick": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-sidekick",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-sidekick",
+		"contributionDate": "2016-09-04"
+	}],
+	"bot-jenkins": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-jenkins",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-jenkins",
+		"contributionDate": "2016-09-04"
+	}],
+	"bot-room-manager": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-room-manager",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-room-manager",
+		"contributionDate": "2016-09-04"
+	}],
+	"symphony-api-spec": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-82",
+		"repositoryName": "symphony-api-spec",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "symphony-api-spec",
+		"contributionDate": "2017-05-04"
+	}],
+	"App-Integrations-Github": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-25",
+		"repositoryName": "App-Integrations-Github",
+		"projectState": "RELEASED",
+		"projectName": "App-Integrations-Github",
+		"contributionDate": "2016-12-19",
+		"activationDate": "2017-06-12"
+	}],
+	"bot-sym-browser": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-sym-browser",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-sym-browser",
+		"contributionDate": "2016-09-04"
+	}],
+	"hubot-symphony": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-9",
+		"repositoryName": "hubot-symphony",
+		"projectState": "RELEASED",
+		"projectName": "hubot-symphony",
+		"contributionDate": "2016-07-05",
+		"activationDate": "2016-11-29"
+	}],
+	"extension-api-angular-service": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-18",
+		"repositoryName": "extension-api-angular-service",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "extension-api-angular-service",
+		"contributionDate": "2016-11-08"
+	}],
+	"ContainerJS": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-48",
+		"repositoryName": "ContainerJS",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "ContainerJS",
+		"contributionDate": "2017-04-24"
+	}],
+	"clj-symphony": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-14",
+		"repositoryName": "clj-symphony",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "clj-symphony",
+		"contributionDate": "2016-08-11"
+	}],
+	"Symphony Java Client": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-8",
+		"repositoryName": "symphony-java-api",
+		"projectState": "RELEASED",
+		"projectName": "Symphony Java Client",
+		"contributionDate": "2016-06-06",
+		"activationDate": "2017-03-10"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-8",
+		"repositoryName": "symphony-java-client",
+		"projectState": "RELEASED",
+		"projectName": "Symphony Java Client",
+		"contributionDate": "2016-06-06",
+		"activationDate": "2017-03-10"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-8",
+		"repositoryName": "symphony-java-sample-bots",
+		"projectState": "RELEASED",
+		"projectName": "Symphony Java Client",
+		"contributionDate": "2016-06-06",
+		"activationDate": "2017-03-10"
+	}],
+	"RestApiClient": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-4",
+		"repositoryName": "RestApiClient",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "RestApiClient",
+		"contributionDate": "2016-05-17"
+	}],
+	"symphony-node-binding": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-58",
+		"repositoryName": "symphony-node-binding",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "symphony-node-binding",
+		"contributionDate": "2017-04-21"
+	}],
+	"SymphonyElectron": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-29",
+		"repositoryName": "SymphonyElectron",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "SymphonyElectron",
+		"contributionDate": "2016-11-28"
+	}],
+	"Python Symphony": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-28",
+		"repositoryName": "python-symphony",
+		"projectState": "INCUBATING",
+		"projectName": "Python Symphony",
+		"contributionDate": "2016-11-18"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-28",
+		"repositoryName": "python-symphony-binding",
+		"projectState": "INCUBATING",
+		"projectName": "Python Symphony",
+		"contributionDate": "2016-11-18"
+	}],
+	"grubbot": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-94",
+		"repositoryName": "grubbot",
+		"projectState": "INCUBATING",
+		"projectName": "grubbot",
+		"contributionDate": "2017-07-02"
+	}],
+	"bot-woodhouse": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-13",
+		"repositoryName": "bot-woodhouse",
+		"isProject": true,
+		"projectState": "ARCHIVED",
+		"projectName": "bot-woodhouse",
+		"contributionDate": "2016-09-04",
+		"archiveDate": "2016-11-07"
+	}],
+	"bot-greenhouse": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-greenhouse",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-greenhouse",
+		"contributionDate": "2016-09-04"
+	}],
+	"Minuet": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-3",
+		"repositoryName": "SFE-DesktopClient-pgx",
+		"isProject": false,
+		"projectState": "INCUBATING",
+		"projectName": "Minuet",
+		"contributionDate": "2017-02-21"
+	}, {
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-3",
+		"repositoryName": "SFE-Minuet-DesktopClient",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "Minuet",
+		"contributionDate": "2017-02-24"
+	}],
+	"App-Integrations-Jira": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-25",
+		"repositoryName": "App-Integrations-Jira",
+		"projectState": "RELEASED",
+		"projectName": "App-Integrations-Jira",
+		"contributionDate": "2016-12-19",
+		"activationDate": "2017-06-12"
+	}],
+	"metronome": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-31",
+		"repositoryName": "metronome",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "metronome",
+		"contributionDate": "2016-12-12"
+	}],
+	"Foundation Infrastructure": [{
+		"metadataVersion": "1.1.0",
+		"repositoryName": "certificate-toolbox",
+		"isProject": false,
+		"projectName": "Foundation Infrastructure"
+	}, {
+		"metadataVersion": "1.1.0",
+		"repositoryName": "clabot-config",
+		"isProject": false,
+		"projectName": "Foundation Infrastructure"
+	}, {
+		"metadataVersion": "2.0.0",
+		"repositoryName": "clabot-test",
+		"projectName": "Foundation Infrastructure",
+		"contributionDate": "2017-06-08"
+	}, {
+		"metadataVersion": "2.0.0",
+		"repositoryName": "contrib-toolbox",
+		"projectName": "Foundation Infrastructure",
+		"contributionDate": "2016-05-25"
+	}, {
+		"metadataVersion": "1.1.0",
+		"repositoryName": "ssf-enforcer-rules",
+		"isProject": false,
+		"projectName": "Foundation Infrastructure"
+	}, {
+		"metadataVersion": "1.1.0",
+		"repositoryName": "ssf-jar-resource-bundle",
+		"isProject": false,
+		"projectName": "Foundation Infrastructure"
+	}, {
+		"metadataVersion": "1.1.0",
+		"repositoryName": "ssf-metadata",
+		"isProject": false,
+		"projectName": "Foundation Infrastructure"
+	}, {
+		"metadataVersion": "1.1.0",
+		"repositoryName": "ssf-parent-pom",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "Foundation Infrastructure",
+		"contributionDate": "2016-06-16"
+	}, {
+		"metadataVersion": "1.1.0",
+		"repositoryName": "symphonyoss.github.io",
+		"isProject": false,
+		"projectName": "Foundation Infrastructure"
+	}],
+	"messageml-utils": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-85",
+		"repositoryName": "messageml-utils",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "messageml-utils",
+		"contributionDate": "2017-05-19"
+	}],
+	"App-Integrations-Trello": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-25",
+		"repositoryName": "App-Integrations-Trello",
+		"projectState": "RELEASED",
+		"projectName": "App-Integrations-Trello",
+		"contributionDate": "2016-12-19",
+		"activationDate": "2017-06-12"
+	}],
+	"bot-home-security-talking": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-home-security-talking",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-home-security-talking",
+		"contributionDate": "2016-09-04"
+	}],
+	"bot-jira": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-jira",
+		"isProject": true,
+		"projectState": "ARCHIVED",
+		"projectName": "bot-jira",
+		"contributionDate": "2016-09-04",
+		"archiveDate": "2017-03-14"
+	}],
+	"symphony-click2dial": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-36",
+		"repositoryName": "symphony-click2dial",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "symphony-click2dial",
+		"contributionDate": "2017-04-23"
+	}],
+	"WebRTC": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-30",
+		"repositoryName": "perc-webrtc",
+		"isProject": false,
+		"projectName": "WebRTC",
+		"contributionDate": "2016-12-15"
+	}, {
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-30",
+		"repositoryName": "webrtc-e2e",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "WebRTC",
+		"contributionDate": "2016-12-15"
+	}],
+	"ScreenSnippet": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-74",
+		"repositoryName": "ScreenSnippet",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "ScreenSnippet",
+		"contributionDate": "2017-04-20"
+	}],
+	"bot-lunch-box": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-lunch-box",
+		"isProject": true,
+		"projectState": "ARCHIVED",
+		"projectName": "bot-lunch-box",
+		"contributionDate": "2016-09-04",
+		"archiveDate": "2016-11-07"
+	}],
+	"bot-twilio": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-twilio",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-twilio",
+		"contributionDate": "2016-09-04"
+	}],
+	"glue-symphony-rfq": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-16",
+		"repositoryName": "glue-symphony-rfq",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "glue-symphony-rfq",
+		"contributionDate": "2016-12-20"
+	}],
+	"sprinkle-bulk-add-users": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-50",
+		"repositoryName": "sprinkle-bulk-add-users",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "sprinkle-bulk-add-users",
+		"contributionDate": "2017-03-16"
+	}],
+	"symfuny-chat-bot": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-79",
+		"repositoryName": "symfuny-chat-bot",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "symfuny-chat-bot",
+		"contributionDate": "2017-05-04"
+	}],
+	"bot-faq": [{
+		"metadataVersion": "1.1.0",
+		"contribJiraKey": "CONTRIB-15",
+		"repositoryName": "bot-faq",
+		"isProject": true,
+		"projectState": "INCUBATING",
+		"projectName": "bot-faq",
+		"contributionDate": "2016-09-04"
+	}],
+	"App-Integrations-Zapier": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-25",
+		"repositoryName": "App-Integrations-Zapier",
+		"projectState": "RELEASED",
+		"projectName": "App-Integrations-Zapier",
+		"contributionDate": "2016-12-19",
+		"activationDate": "2017-06-12"
+	}],
+	"Documentation and Examples": [{
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-42",
+		"repositoryName": "app-auth-example",
+		"projectName": "Documentation and Examples",
+		"contributionDate": "2017-02-21"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-6",
+		"repositoryName": "embedding-api-examples",
+		"projectState": "INCUBATING",
+		"projectName": "Documentation and Examples",
+		"contributionDate": "2016-06-16"
+	}, {
+		"metadataVersion": "2.0.0",
+		"contribJiraKey": "CONTRIB-5",
+		"repositoryName": "extension-api-examples",
+		"projectState": "INCUBATING",
+		"projectName": "Documentation and Examples",
+		"contributionDate": "2016-06-16"
+	}]
+}

@@ -24,18 +24,21 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       </div>
 
       <div id="filter-container" class="grid grid-3">
-        <div id="statistics" class="grid-1 alpha header">
+<!--         <div id="statistics" class="grid-1 alpha header">
           <h1>Statistics</h1>
+          <p>
+            <a href="https://symphonyoss.biterg.io/app/kibana#/dashboard/Overview?_g=()"><span id="num-projects"><img src="assets/spinner.gif" /></span> public projects</a>
+          </p>
           <p>
             <a href="https://github.com/symphonyoss/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
           </p>
           <p class="email"><a href="mailto:info@symphony.foundation">info@symphony.foundation</a></p>
         </div>
-
-        <div id="recently-updated" class="grid-2 omega header">
+ -->
+        <!-- <div id="recently-updated" class="grid-2 omega header">
           <h1>Recently updated <a href="https://github.com/symphonyoss/repositories">View All on GitHub</a></h1>
           <ol id="recently-updated-repos"></ol>
-        </div>
+        </div> -->
       </div>
 
       <ol id="repos"></ol>
@@ -80,8 +83,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       var filterValueLabels = {
         "projectState" : {
           "INCUBATING": "Incubating",
-          "ACTIVE": "Active",
-          "LONG_TERM_MAINTENANCE": "Long Term Maintenance",
+          "RELEASED": "Released",
           "ARCHIVED": "Archived"
         }
       };
@@ -95,10 +97,10 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         page = page || 1;
 
         //Mocked URI
-        var uri = "gh-projects-mock"+page+".json";
-        // var uri = "https://api.github.com/orgs/symphonyoss/repos?callback=?"
-        //         + "&per_page=100"
-        //         + "&page="+page;
+        //var uri = "gh-repos-mock"+page+".json";
+        var uri = "https://api.github.com/orgs/symphonyoss/repos?"
+                + "per_page=100"
+                + "&page="+page;
 
         $().ready(function () {
           $.get(uri, function (result) {
@@ -112,41 +114,45 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
             }
             else {
               $(function () {
-                enrichRepos(repos);
+                enrichRepos(repos,true);
               });
             }
           });
         });
       }
 
-      function enrichRepos(repos) {
+      function enrichRepos(repos, createFilters) {
+        var projects = []
         $().ready(function () {
-          $.get("projects.json", function (ssfRepos) {
-            $.each( ssfRepos, function( ssfRepoIdx ) {
-              ssfRepo = ssfRepos[ssfRepoIdx];
-              repoName = ssfRepo["repositoryName"];
-              ghRepo = repos.filter(function(repo) {
-                if (repo["name"] == repoName) {
-                  for (var prop in ssfRepo) {
-                    repo[prop] = ssfRepo[prop];
-                  }
-                }
-              })[0];
+          $.get("projects.json", function (ssfProjects) {
+            $.each( ssfProjects, function( projectName, projectInfo ) {
+              var project = {}
+              project['name'] = projectName;
+              project['repos'] = []
+              $.each( projectInfo, function( repoIdx, ssfRepo ) {
+                var newRepo = repos.filter(function(ghRepo) {
+                  return ghRepo['name'] == ssfRepo['repositoryName']
+                })[0];
+                project['repos'].push($.extend(newRepo, ssfRepo));
+              });
+              projects.push(project);
             });
-            renderFilters(repos);
-            renderRepos(repos);
+            if (createFilters) renderFilters(projects);
+            renderProjects(projects);
           })
         });
       }
 
-      function renderFilters(repos) {
-        $.each(repos, function (i, repo) {
-          // Build the filter mask
-          filterFields.forEach (function (filterName) {
-            var repoValue = repo[filterName];
-            if (repoValue) {
-              addRepoFilters(filterName,repoValue);
-            }
+      function renderFilters(projects) {
+        $.each(projects, function (i, project) {
+          $.each(project['repos'], function (i, repo) {
+            // Build the filter mask
+            filterFields.forEach (function (filterName) {
+              var repoValue = repo[filterName];
+              if (repoValue) {
+                addRepoFilters(filterName,repoValue);
+              }
+            });
           });
         });
       }
@@ -177,38 +183,45 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         }
       }
 
-      function renderRepos(reposToRender) {
+      function renderProjects(projects) {
         // Reset page
         $("#repos").empty();
         $("#recently-updated-repos").empty();
+        $("#num-projects").text(projects.length);
 
-        var filteredReposToRender = reposToRender.filter(function(repo) {
-          return filterRepo(repo);
+        var filteredProjects = projects.filter(function(project) {
+          return filterProject(project);
         });
+        
+        //TODO
+        //$("#num-repos").text(projects.length);
 
-        $("#num-repos").text(filteredReposToRender.length);
+        // TODO - Sorting, not needed right now
+        // $.each(filteredReposToRender, function (i, repo) {
+        //   repoCalculations(repo);
+        // });
 
-        $.each(filteredReposToRender, function (i, repo) {
-          repoCalculations(repo);
-        });
-
-        sortResults(filteredReposToRender);
-
-        $.each(filteredReposToRender.slice(0, 3), function (i, repo) {
-          addRecentlyUpdatedRepo(repo);
-        });
+        $.each(filteredProjects, function (projectIdx, project) {
+          addProject(project);
+        });        
       }
 
-      function filterRepo(repo) {
-        var ret = true;
-        filterFields.forEach(function(filterName){
-          repoValue = repo[filterName];
-          $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
-            filterValue = resolveValueLabel(filterName,$(this).text());
-            if (isFilterSelected($(this)) && repoValue != filterValue) {
-              ret = false;
-            }
+      // Return true if at least one of the repos matches
+      function filterProject(project) {
+        var ret = false;
+        $.each(project['repos'], function (i, repo) {
+          var repo_ret = true;
+          filterFields.forEach(function(filterName){
+            var repoValue = repo[filterName];
+            $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
+              var filterValue = resolveValueLabel(filterName,$(this).text());
+              var isSelected = isFilterSelected($(this));
+              if (isSelected && repoValue != filterValue) {
+                repo_ret = false;
+              }
+            });
           });
+          if (repo_ret) ret=true;
         });
         // console.log('showing repo '+repo['name']+'? '+ret);
         return ret;
@@ -245,6 +258,26 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         $item.appendTo("#repos");
       }
 
+      function addProject(project) {
+        var $item = $("<li>").addClass("repo grid-1");
+        $("<h2>").text(project['name']).appendTo($item);
+
+        if (project['repos'].length == 1) {
+          $item.append($("<p>").text(repoDescription(project['repos'][0])));
+        } else {
+          var $ul = $("<ul>");
+          $.each(project['repos'], function (i, repo) {
+            var $li = $("<li>");
+            var $a = $("<a>").attr("href", repoUrl(repo));
+            $a.text(repo['repositoryName']);
+            $a.appendTo($li);
+            $li.appendTo($ul);
+          });
+          $ul.appendTo($item);
+        }
+        $item.appendTo("#repos");
+      }
+
       function isFilterSelected(item) {
         return ($(item).attr("class") && $(item).attr("class").split(' ').indexOf('selected') > -1);
       }
@@ -256,7 +289,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         } else {
           $(filterLink).addClass("selected");
         }
-        renderRepos(repos);
+        enrichRepos(repos,false);
       }
 
       function sortResults(repos) {
@@ -298,7 +331,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       // Util functions
 
       function repoUrl(repo) {
-        return repoUrls[repo.name] || repo.html_url;
+        return repoUrls[repo.repositoryName] || repo.html_url || '#';
       }
 
       function filterNameLabel(filterName) {
@@ -322,7 +355,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       }
 
       function repoDescription(repo) {
-        return repoDescriptions[repo.name] || repo.description;
+        return repoDescriptions[repo.name] || repo.description || repo.name;
       }
 
       // Invoke the main function
