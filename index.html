@@ -296,7 +296,10 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         $("<h2>").text(project['name']).appendTo($item);
 
         if (project['repos'].length == 1) {
-          $item.append($("<p>").text(repoDescription(project['repos'][0])));
+          repo = project['repos'][0];
+          var $a = $("<a>").attr("href", repoUrl(repo));
+          $item.append($("<p>").text(repoDescription(repo)));
+          $item = $a.append($item);
         } else {
           var $ul = $("<ul>");
           $.each(project['repos'], function (i, repo) {
