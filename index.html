@@ -157,24 +157,24 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
 
         if (!$("#sort-by-name").length) {
           var $p = $("<p>").attr("id","sort-by-name").attr("style","display:inline");
-          var $name = $("<a>").attr("href", "#").text("Name").click(function(){
+          var $name = $("<a>").attr("href", "#").text("Name").addClass("name").click(function(){
             toggleSort(this,$("#sort-by-activity > span > a"));
           });
-          $p.append($("<span>").addClass("name").append($name));
+          $p.append($("<span>").append($name));
           $p.appendTo("#sort");
         }
 
         if (!$("#sort-by-activity").length) {
           var $p = $("<p>").attr("id","sort-by-activity").attr("style","display:inline");
-          var $name = $("<a>").attr("href", "#").text("Last activity").click(function(){
+          var $name = $("<a>").attr("href", "#").text("Last activity").addClass("name").click(function(){
             toggleSort(this,$("#sort-by-name > span > a"));
           });
-          $p.append($("<span>").addClass("name").append($name));
+          $p.append($("<span>").append($name));
           $p.appendTo("#sort");
         }
 
         if (!isFilterSelected($('#sort-by-name > span > a')) && !isFilterSelected($('#sort-by-activity > span > a'))) {
-          $('#sort-by-activity > span > a').addClass("selected");
+          $('#sort-by-activity > span > a').addClass("name selected");
         }
       }
 
@@ -210,10 +210,10 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
 
         if (!$("#"+filterKey).length) {
           var $p = $("<p>").attr("id",filterKey).attr("style","display:inline");
-          var $name = $("<a>").attr("href", "#").text(filterValueLabel(filterName,filterValue)).click(function(){
+          var $name = $("<a>").attr("href", "#").text(filterValueLabel(filterName,filterValue)).addClass("name").click(function(){
             toggleFilter(this);
           });
-          $p.append($("<span>").addClass("name").append($name));
+          $p.append($("<span>").append($name));
           $p.appendTo("#"+containerKey);
         }
       }

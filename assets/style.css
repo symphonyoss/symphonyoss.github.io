@@ -1,11 +1,32 @@
-.selected {
-    background: #dddddd;
-}
-
 html {
-  background: url("bg.png") repeat;
+background: #f2f5f6; /* Old browsers */
+background: -moz-linear-gradient(top, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* IE6-9 */
 }
-
+div#filtercontainer-language.grid-3.omega.header{
+  height: 160px;
+}
+ul {
+  padding-left: 15px;
+}
+div#filtercontainer-projectState.grid-3.omega.header{
+  width: 400px;
+  margin-left: 0px;
+  margin-bottom: 70px;
+}
+div#sort.grid-3.omega.header{
+  width: 280px;
+  margin-left: 20px;
+}
+div#filtercontainer-language.grid-3.omega.header{
+  width: 700px;
+  margin-left: 0px;
+}
+p#filter-language-Java a.name{
+  margin-bottom: 15px;
+}
 body {
   font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4;
@@ -15,7 +36,7 @@ body {
 
 h1 {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   color: #333;
 }
 
@@ -42,7 +63,7 @@ a:hover {
 }
 
 #main {
-  height: 400px;
+  height: 340px;
   text-align: center;
 }
 
@@ -56,7 +77,7 @@ a:hover {
 }
 
 #main h1 {
-  margin: 30px 0;
+  margin: 5px 0;
 }
 
 #main h1, #main p {
@@ -73,16 +94,17 @@ a:hover {
   width: 190px;
   height: 64px;
   margin: 15px 0 0 15px;
-  background: url("logo.png");
+  background: url("SymphonySoftwareFoundation-copy.png")no-repeat;
   text-indent: -99999px;
 }
 
 #logo h1 {
-  margin: 0;
+  margin-left: 10px;
+
 }
 
 div.header {
-  height: 130px;
+  height: 110px;
 }
 
 div.header h1, div.header p {
@@ -131,10 +153,6 @@ div.header h1 {
   font-size: 11px;
 }
 
-#recently-updated-repos li span.name {
-  padding: 0 6px 0;
-  font-size: 13px;
-}
 
 #recently-updated-repos li span.time a,
 #recently-updated-repos li span.watchers a,
@@ -143,7 +161,51 @@ div.header h1 {
 }
 
 li.repo {
-  height: 250px;
+  height: 270px;
+}
+.name{
+  background-color: #e7e7e7;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  
+  -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+ 
+  cursor: pointer;
+}
+.name:hover{
+  background-color: #0084b4;
+  color: white;
+  
+  
+  
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.name.selected{
+  background-color: #0084b4;
+  color: white;
+  
+  border: 1px black;
+  border-style: solid;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 li.repo > a {
@@ -153,6 +215,7 @@ li.repo > a {
   overflow: hidden;
   text-decoration: none;
   color: inherit;
+  font-size: 45px;
 }
 
 li.repo a:hover {
