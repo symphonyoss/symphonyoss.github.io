@@ -6,7 +6,7 @@ background: linear-gradient(to bottom, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=0 ); /* IE6-9 */
 }
 div#filtercontainer-language.grid-3.omega.header{
-  height: 160px;
+  height: 130px;
 }
 ul {
   padding-left: 15px;
@@ -21,7 +21,7 @@ div#sort.grid-3.omega.header{
   margin-left: 20px;
 }
 div#filtercontainer-language.grid-3.omega.header{
-  width: 700px;
+  width: 100%;
   margin-left: 0px;
 }
 p#filter-language-Java a.name{
@@ -31,7 +31,7 @@ body {
   font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.4;
   color: #666;
-  min-width: 960px;
+  min-width: 95%;
 }
 
 h1 {
@@ -51,19 +51,17 @@ a:link, a:visited {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
+
 
 #wrapper {
   position: relative;
-  width: 960px;
+  width: 95%;
   margin: 0 auto;
   padding: 20px 0;
 }
 
 #main {
-  height: 340px;
+  height: 330px;
   text-align: center;
 }
 
@@ -104,7 +102,7 @@ a:hover {
 }
 
 div.header {
-  height: 110px;
+  height: 130px;
 }
 
 div.header h1, div.header p {
@@ -113,6 +111,7 @@ div.header h1, div.header p {
 
 div.header h1 {
   margin-bottom: 10px;
+  padding-top: 10px;
 }
 
 #num-repos, #num-members {
@@ -161,51 +160,38 @@ div.header h1 {
 }
 
 li.repo {
-  height: 270px;
+  height: 260px;
 }
 .name{
-  background-color: #e7e7e7;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  
-  -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;
- 
-  cursor: pointer;
+  white-space: nowrap;
+  background-color: #dddddd;
+  background-image: linear-gradient(top, #eee, #ccc);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+  border: 1px solid #777;
+  border-radius: 6px;
+  padding: 4px 12px;
+  margin: 0.4em;
+  font: bold 1em/2em Arial, Helvetica;
+  text-decoration: none !important;
+  color: #333;
+  box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
 }
-.name:hover{
-  background-color: #0084b4;
-  color: white;
-  
-  
-  
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+
 .name.selected{
-  background-color: #0084b4;
-  color: white;
-  
-  border: 1px black;
-  border-style: solid;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  white-space: nowrap;
+  background-color: #0084b4;
+  background-image: linear-gradient(top, #eee, #ccc);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+  border: 1px solid #777;
+  padding: 4px 12px;
+  margin: 0.4em;
+  font: bold 1em/2em Arial, Helvetica;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
 }
 
 li.repo > a {
@@ -250,6 +236,30 @@ li.repo h3 {
   border-bottom: 50px solid transparent;
   border-left: 50px solid transparent;
   border-right: 50px solid #0080b0;
+  pointer-events: none;
+}
+.repo1:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid transparent;
+  border-right: 50px solid #00ff00;
+  pointer-events: none;
+}
+.repo2:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid transparent;
+  border-right: 50px solid #ffff00;
   pointer-events: none;
 }
 

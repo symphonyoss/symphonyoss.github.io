@@ -8,6 +8,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
     <link rel="stylesheet" type="text/css" href="assets/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/grid.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="shortcut icon" href="assets/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projects hosted by the Foundation">
   </head>
@@ -283,7 +284,7 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
       }
 
       function addRepo(repo) {
-        var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
+        var $item = $("<li>").addClass("repo1 grid-1" + (repo.language || '').toLowerCase());
         var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
         $link.append($("<h2>").text(repo.name));
         $link.append($("<h3>").text(repo.language));
@@ -295,12 +296,16 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
         var $item = $("<li>").addClass("repo grid-1");
         $("<h2>").text(project['name']).appendTo($item);
 
-        if (project['repos'].length == 1) {
-          repo = project['repos'][0];
-          var $a = $("<a>").attr("href", repoUrl(repo));
-          $item.append($("<p>").text(repoDescription(repo)));
-          $item = $a.append($item);
-        } else {
+        // if (project['repos'].length == 1) {
+          
+        //   repo = project['repos'][0];
+        //   $item.append($("<ul>").text(repoDescription(repo)));
+        //   var $a = $("<a>").attr("href", repoUrl(repo));
+          
+        //   $item = $a.append($item);
+          
+
+        // } else {
           var $ul = $("<ul>");
           $.each(project['repos'], function (i, repo) {
             var $li = $("<li>");
@@ -309,8 +314,9 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
             $a.appendTo($li);
             $li.appendTo($ul);
           });
+          $("<p>").text(repoDescription(project['repos'][0])).appendTo($item);
           $ul.appendTo($item);
-        }
+        // }
         $item.appendTo("#repos");
       }
 
