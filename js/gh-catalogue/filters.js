@@ -1,26 +1,30 @@
 function renderFilters(projects) {
   $.each(projects, function (i, project) {
-    $.each(project['repos'], function (i, repo) {
-      // Build the filter mask
-      filterFields.forEach (function (filterName) {
-        var repoValue = repo[filterName];
-        if (repoValue) {
-          addRepoFilters(filterName,repoValue);
-        }
-      });
+    // Build the filter mask
+    filterFields.forEach (function (filterName) {
+      var repoValue = project[filterName];
+      if (repoValue) {
+        console.log(`addRepoFilters(${project['name']},${filterName},${repoValue})`);
+        addRepoFilters(filterName,repoValue);
+      }
     });
   });
 }
 
 function addRepoFilters(filterName, filterValue) {
-  if (jQuery.type( filterValue ) === "string") {
-    key = filterName+"-"+filterValue.replace('#','-sharp');
+  var keys = [];
+  if (filterName === "languages") {
+    for (var lang in filterValue) {
+    // filterValue.forEach (function (lang,val) {
+      keys.push(lang.replace('#','-sharp'));
+    }
+  // } else if (jQuery.type( filterValue ) === "string") {
+  //   keys.push(filterValue.replace('#','-sharp'));
   } else {
-    key = filterName+"-"+filterValue;
+    keys.push(filterValue);
   }
-  filterKey = "filter-"+key;
-  containerKey = "filtercontainer-"+filterName;
 
+  containerKey = "filtercontainer-"+filterName;
   if (!$( "#"+containerKey ).length) {
     var $div = $("<div>").attr("id",containerKey).addClass("grid-3 omega header");
     var $h1 = $("<h1>").text(filterNameLabel(filterName));
@@ -28,14 +32,20 @@ function addRepoFilters(filterName, filterValue) {
     $div.appendTo("#filter-container");
   }
 
-  if (!$("#"+filterKey).length) {
-    var $p = $("<p>").attr("id",filterKey).attr("style","display:inline");
-    var $name = $("<a>").attr("href", "#").text(filterValueLabel(filterName,filterValue)).addClass("name").click(function(){
-      toggleFilter(this);
-    });
-    $p.append($("<span>").append($name));
-    $p.appendTo("#"+containerKey);
-  }
+  console.log(`append-way-before(${keys})`);
+  keys.forEach (function (key) {
+    filterKey = "filter-"+key;
+    if (!$("#"+filterKey).length) {
+      var $p = $("<p>").attr("id",filterKey).attr("style","display:inline");
+      var $name = $("<a>").attr("href", "#").text(filterValueLabel(filterName,key)).addClass("name").click(function(){
+        toggleFilter(this);
+      });
+      $p.append($("<span>").append($name));
+      console.log(`append-before(${filterName},${filterKey})`);
+      $p.appendTo("#"+containerKey);
+      console.log(`append-after(${filterName},${filterKey})`);
+    }
+  });
 }
 
 // Return true if at least one of the repos matches

@@ -1,8 +1,5 @@
 var repos = []
 
-//List of filter fields
-var filterFields = ['language','projectState'];
-
 // Put custom repo URL's in this object, keyed by repo name.
 var repoUrls = {
   "symphony-java-client": "http://symphonyoss.github.io/symphony-java-client/",
@@ -71,7 +68,7 @@ function addProject(project) {
     $a.appendTo($li);
     $li.appendTo($ul);
   });
-  $("<p>").text(repoDescription(project['repos'][0])).appendTo($item);
+  //$("<p>").text(repoDescription(project['repos'][0])).appendTo($item);
   $ul.appendTo($item);
   $item.appendTo("#repos");
 }

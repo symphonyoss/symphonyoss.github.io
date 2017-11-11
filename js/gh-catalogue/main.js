@@ -1,34 +1,84 @@
-$.getScript( "/js/gh-catalogue/parser.js", function( data, textStatus, jqxhr ) { });
+//List of filter fields
+// TODO - implement multi-value filters
+var filterFields = ['languages','projectState'];
+
+
 $.getScript( "/js/gh-catalogue/projects.js", function( data, textStatus, jqxhr ) { });
 $.getScript( "/js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
 $.getScript( "/js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) { });
 
-function fetchAllRepos(page) {
-  page = page || 1;
-
-  //Mocked URI
-  //var uri = "gh-repos-mock"+page+".json";
-  var uri = "https://api.github.com/orgs/symphonyoss/repos?"
-          + "per_page=100"
-          + "&page="+page;
-
+// Invoked by index.html
+function renderProjectCatalogue(createFilters) {
+  var projects = []
   $().ready(function () {
-    $.get(uri, function (result) {
-      //Mocked URI
-      if (result && result.length > 0) {
-      //To use the mocked URI, uncomment the following 2 lines and comment the 3rd
-      // if (result.data && result.data.length > 0) {
-        // repos = repos.concat(result.data);
-        repos = repos.concat(result);
-        // Recoursive call to the same function, to manage GitHub API paging
-        fetchAllRepos(page + 1);
+    $.get("mock/projects-new.json", function (ssfProjects) {
+      if (createFilters) {
+        console.log(`Test!`);
+        // Invoke filters.js
+        renderFilters(ssfProjects);
+        // console.log(`renderFilters(${ssfProjects})`);
+        // Invoke sort.js
+        renderSorts(ssfProjects);
+        // console.log(`renderSorts(${ssfProjects})`);
       }
-      else {
-        $(function () {
-          // Invoke parser.js
-          enrichRepos(repos,true);
+      // Reset page
+      $("#repos").empty();
+      $("#recently-updated-repos").empty();
+      $("#num-projects").text(ssfProjects.length);
+
+      var filteredProjects = ssfProjects.filter(function(project) {
+        // Invoke filters.js
+        return filterProject(project);
+      });
+      
+      //TODO
+      //$("#num-repos").text(projects.length);
+
+      // TODO - Sorting, not needed right now
+      // $.each(filteredReposToRender, function (i, repo) {
+      //   repoCalculations(repo);
+      // });
+
+      // // Sort by highest # of watchers.
+      // projects.sort(function (a, b) {
+      //   if (a.hotness < b.hotness) return 1;
+      //   if (b.hotness < a.hotness) return -1;
+      //   return 0;
+      // });
+
+      // Sort by most-recently pushed to.
+      var sort_by = "activity";
+      if (isFilterSelected($('#sort-by-name > span > a'))) {
+        sort_by = "name";
+      }
+      // if (isFilterSelected($('#sort-by-activity > span > a'))) {
+      // }
+
+      if (sort_by == "name") {
+        filteredProjects.sort(function (a, b) {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          if (b.name.toLowerCase() < a.name.toLowerCase()) return 1;
+          return 0;
         });
+      } else {
+        filteredProjects.sort(function (a, b) {
+          var a_updated = a['repos'].sort(function(a1,b1) {
+            return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
+          })[0].updated_at;
+          var b_updated = b['repos'].sort(function(a1,b1) { 
+            return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
+          })[0].updated_at;
+
+          if (a_updated < b_updated) return 1;
+          if (b_updated < a_updated) return -1;
+          return 0;
+        });          
       }
+
+      $.each(filteredProjects, function (projectIdx, project) {
+        // Invoke projects.js
+        addProject(project);
+      });
     });
   });
 }
