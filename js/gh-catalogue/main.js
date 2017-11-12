@@ -2,10 +2,11 @@
 // TODO - implement multi-value filters
 var filterFields = ['languages','projectState'];
 
+var relPath = window.location.pathname;
 
-$.getScript( "js/gh-catalogue/projects.js", function( data, textStatus, jqxhr ) { });
-$.getScript( "js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
-$.getScript( "js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) { });
+$.getScript( relPath + "js/gh-catalogue/projects.js", function( data, textStatus, jqxhr ) { });
+$.getScript( relPath + "js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
+$.getScript( relPath + "js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) { });
 
 // Invoked by index.html
 function renderProjectCatalogue(createFilters) {
