@@ -1,5 +1,4 @@
 //List of filter fields
-// TODO - implement multi-value filters
 var filterFields = ['languages','projectState'];
 
 var relPath = window.location.pathname;

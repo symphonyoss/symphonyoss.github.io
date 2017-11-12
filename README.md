@@ -22,13 +22,12 @@ In order to avoid frequent calls against the Github API, index.html currently lo
 To run the website locally you need to have [NodeJS installed](https://nodejs.org/en/).
 
 ```
-npm install http-server -g
+npm install yarn -g
 git clone git@github.com:symphonyoss/symphonyoss.github.io.git
 cd symphonyoss.github.io
-git checkout filtering
-http-server
+yarn webpack
 ```
-Now you can open your browser on [http://127.0.0.1:8080](http://127.0.0.1:8080)
+... TODO
 
 ## Share URL
 
