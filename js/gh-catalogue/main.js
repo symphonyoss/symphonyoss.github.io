@@ -11,9 +11,8 @@ $.getScript( "/js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) 
 function renderProjectCatalogue(createFilters) {
   var projects = []
   $().ready(function () {
-    $.get("mock/projects-new.json", function (ssfProjects) {
+    $.get("projects.json", function (ssfProjects) {
       if (createFilters) {
-        console.log(`Test!`);
         // Invoke filters.js
         renderFilters(ssfProjects);
         // console.log(`renderFilters(${ssfProjects})`);
@@ -28,7 +27,7 @@ function renderProjectCatalogue(createFilters) {
 
       var filteredProjects = ssfProjects.filter(function(project) {
         // Invoke filters.js
-        return filterProject(project);
+        return filterProject(project, createFilters);
       });
       
       //TODO

@@ -32,8 +32,8 @@ function renderSorts(projects) {
 function toggleSort(toEnable,toDisable) {
   $(toDisable).removeClass("selected");
   $(toEnable).addClass("selected");
-  // Invoke parser.js
-  enrichRepos(repos,false);
+  // Invoke main.js
+  renderProjectCatalogue(false);
 }
 
 function repoCalculations(repo) {

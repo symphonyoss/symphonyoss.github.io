@@ -3,7 +3,7 @@
 This code was copied from https://github.com/twitter/twitter.github.com/blob/master/index.html and adapted for Symphony Software Foundation needs
 -->
 <html>
-  <head>
+<head>
     <title>Symphony Software Foundation</title>
     <link rel="stylesheet" type="text/css" href="assets/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/grid.css">
@@ -11,41 +11,46 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
     <link rel="shortcut icon" href="assets/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projects hosted by the Foundation">
-  </head>
-  <body>
-    <div id="wrapper" class="grid clearfix">
-      <div id="main" class="grid-1">
+</head>
+<body>
+<div id="wrapper" class="grid clearfix">
+    <div id="main" class="grid-1">
         <div id="logo"><h1>Symphony Software Foundation</h1></div>
         <h1>Documentation for projects hosted by the Foundation.</h1>
-        <p>Want to join? <a href="https://symphonyoss.atlassian.net/wiki/display/FM/Contribution">Become a Contributor</a></p>
+        <p>Want to join? <a href="https://symphonyoss.atlassian.net/wiki/display/FM/Contribution">Become a
+            Contributor</a></p>
         <p>More about <a href="https://symphony.foundation/">Symphony Software Foundation</a></p>
         <p>&nbsp;</p>
         <p>More about the Foundation:
-        <br/><a href="http://symphonyoss.atlassian.net/wiki" target="_blank">Wiki</a>, <a href="http://github.com/symphonyoss" target="_blank">SymphonyOSS on Github</a>, <a href="https://twitter.com/symphonyOSS" target="_blank">Twitter</a>, <a href="http://linkedin.com/company/symphony-software-foundation" target="_blank">LinkedIN</a> and <a href="http://facebook.com/symphonyOSS" target="_blank">Facebook</a></p>
-      </div>
+            <br/><a href="http://symphonyoss.atlassian.net/wiki" target="_blank">Wiki</a>, <a
+                    href="http://github.com/symphonyoss" target="_blank">SymphonyOSS on Github</a>, <a
+                    href="https://twitter.com/symphonyOSS" target="_blank">Twitter</a>, <a
+                    href="http://linkedin.com/company/symphony-software-foundation" target="_blank">LinkedIN</a> and <a
+                    href="http://facebook.com/symphonyOSS" target="_blank">Facebook</a></p>
+    </div>
 
-      <div id="filter-container" class="grid grid-3">
-<!--         <div id="statistics" class="grid-1 alpha header">
-          <h1>Statistics</h1>
-          <p>
-            <a href="https://symphonyoss.biterg.io/app/kibana#/dashboard/Overview?_g=()"><span id="num-projects"><img src="assets/spinner.gif" /></span> public projects</a>
-          </p>
-          <p>
-            <a href="https://github.com/symphonyoss/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
-          </p>
-          <p class="email"><a href="mailto:info@symphony.foundation">info@symphony.foundation</a></p>
-        </div>
- -->
+    <div id="filter-container" class="grid grid-3">
+        <!--         <div id="statistics" class="grid-1 alpha header">
+                  <h1>Statistics</h1>
+                  <p>
+                    <a href="https://symphonyoss.biterg.io/app/kibana#/dashboard/Overview?_g=()"><span id="num-projects"><img src="assets/spinner.gif" /></span> public projects</a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/symphonyoss/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
+                  </p>
+                  <p class="email"><a href="mailto:info@symphony.foundation">info@symphony.foundation</a></p>
+                </div>
+         -->
         <!-- <div id="recently-updated" class="grid-2 omega header">
           <h1>Recently updated <a href="https://github.com/symphonyoss/repositories">View All on GitHub</a></h1>
           <ol id="recently-updated-repos"></ol>
         </div> -->
-      </div>
-
-      <ol id="repos"></ol>
-
     </div>
-    <script type="text/javascript">
+
+    <ol id="repos"></ol>
+
+</div>
+<script type="text/javascript">
 
   var _gaq = _gaq || [];
   // TODO - enable it when ready
@@ -58,15 +63,17 @@ This code was copied from https://github.com/twitter/twitter.github.com/blob/mas
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-    </script>
-    <script type="text/javascript" src="assets/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="assets/strftime.js"></script>
-    <script type="text/javascript" src="js/gh-catalogue/main.js"></script>
-    <script type="text/javascript">
+
+</script>
+<script type="text/javascript" src="assets/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="assets/strftime.js"></script>
+<script type="text/javascript" src="js/gh-catalogue/main.js"></script>
+<script type="text/javascript">
     (function ($, undefined) {
       // Invoke main.js
       renderProjectCatalogue(true);
     })(jQuery);
-    </script>
-  </body>
+
+</script>
+</body>
 </html>

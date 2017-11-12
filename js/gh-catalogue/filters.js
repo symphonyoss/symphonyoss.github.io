@@ -4,7 +4,6 @@ function renderFilters(projects) {
     filterFields.forEach (function (filterName) {
       var repoValue = project[filterName];
       if (repoValue) {
-        console.log(`addRepoFilters(${project['name']},${filterName},${repoValue})`);
         addRepoFilters(filterName,repoValue);
       }
     });
@@ -15,11 +14,8 @@ function addRepoFilters(filterName, filterValue) {
   var keys = [];
   if (filterName === "languages") {
     for (var lang in filterValue) {
-    // filterValue.forEach (function (lang,val) {
-      keys.push(lang.replace('#','-sharp'));
+      keys.push(lang.replace('#','-sharp').replace('+','-plus').replace('+','-plus'));
     }
-  // } else if (jQuery.type( filterValue ) === "string") {
-  //   keys.push(filterValue.replace('#','-sharp'));
   } else {
     keys.push(filterValue);
   }
@@ -32,7 +28,7 @@ function addRepoFilters(filterName, filterValue) {
     $div.appendTo("#filter-container");
   }
 
-  console.log(`append-way-before(${keys})`);
+  // console.log(`append-way-before(${keys})`);
   keys.forEach (function (key) {
     filterKey = "filter-"+key;
     if (!$("#"+filterKey).length) {
@@ -41,32 +37,33 @@ function addRepoFilters(filterName, filterValue) {
         toggleFilter(this);
       });
       $p.append($("<span>").append($name));
-      console.log(`append-before(${filterName},${filterKey})`);
       $p.appendTo("#"+containerKey);
-      console.log(`append-after(${filterName},${filterKey})`);
     }
   });
 }
 
 // Return true if at least one of the repos matches
-function filterProject(project) {
-  var ret = false;
-  $.each(project['repos'], function (i, repo) {
-    var repo_ret = true;
+function filterProject(project, firstStart) {
+    var ret = firstStart;
     filterFields.forEach(function(filterName){
-      var repoValue = repo[filterName];
-      $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
-        var filterValue = resolveValueLabel(filterName,$(this).text());
-        var isSelected = isFilterSelected($(this));
-        if (isSelected && repoValue != filterValue) {
-          repo_ret = false;
-        }
-      });
+        var repoValue = project[filterName];
+        $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
+            var filterValue = resolveValueLabel(filterName,$(this).text());
+            var isSelected = isFilterSelected($(this));
+
+            if (jQuery.type(repoValue) === "string" && isSelected && repoValue == filterValue) {
+                ret = true;
+            } else {
+                // This is a multi-value filter, like the languages field
+                for (key in repoValue) {
+                    if (isSelected && key == filterValue) {
+                        ret = true;
+                    }
+                }
+            }
+        });
     });
-    if (repo_ret) ret=true;
-  });
-  // console.log('showing repo '+repo['name']+'? '+ret);
-  return ret;
+    return ret;
 }
 
 function isFilterSelected(item) {
@@ -74,14 +71,14 @@ function isFilterSelected(item) {
 }
 
 function toggleFilter(filterLink) {
-  // console.log("toggling filter - "+filterName + ":"+filterValue);
+  console.log("toggling filter "+filterLink + " - "+isFilterSelected(filterLink));
   if (isFilterSelected(filterLink)) {
     $(filterLink).removeClass("selected");
   } else {
     $(filterLink).addClass("selected");
   }
-  // Invoke parser.js
-  enrichRepos(repos,false);
+  // Invoke main.js
+  renderProjectCatalogue(false);
 }
 
 function filterNameLabel(filterName) {
