@@ -3,7 +3,7 @@
 var filterFields = ['languages','projectState'];
 
 var relPath = window.location.pathname;
-if (relPath.endsWith("index.html") > 0) {
+if (relPath.endsWith("index.html")) {
     relPath = relPath.substring(0, str.length - "index.html".length);
 }
 
