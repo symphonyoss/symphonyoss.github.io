@@ -4,7 +4,7 @@ var filterFields = ['languages','projectState'];
 
 var relPath = window.location.pathname;
 if (relPath.endsWith("index.html")) {
-    relPath = relPath.substring(0, str.length - "index.html".length);
+    relPath = relPath.substring(0, relPath.length - "index.html".length);
 }
 
 $.getScript( relPath + "js/gh-catalogue/projects.js", function( data, textStatus, jqxhr ) { });
