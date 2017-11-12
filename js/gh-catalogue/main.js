@@ -3,6 +3,9 @@
 var filterFields = ['languages','projectState'];
 
 var relPath = window.location.pathname;
+if (relPath.endsWith("index.html") > 0) {
+    relPath = relPath.substring(0, str.length - "index.html".length);
+}
 
 $.getScript( relPath + "js/gh-catalogue/projects.js", function( data, textStatus, jqxhr ) { });
 $.getScript( relPath + "js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
