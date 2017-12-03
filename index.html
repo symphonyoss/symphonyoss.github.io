@@ -1,79 +1,133 @@
 <!DOCTYPE html>
-<!--
-This code was copied from https://github.com/twitter/twitter.github.com/blob/master/index.html and adapted for Symphony Software Foundation needs
--->
 <html>
-<head>
+  <head>
     <title>Symphony Software Foundation</title>
-    <link rel="stylesheet" type="text/css" href="assets/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/grid.css">
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <link rel="shortcut icon" href="assets/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/favicon.ico"/>
     <meta name="description" content="Projects hosted by the Foundation">
-</head>
-<body>
-<div id="wrapper" class="grid clearfix">
-    <div id="main" class="grid-1">
-        <div id="logo"><h1>Symphony Software Foundation</h1></div>
-        <h1>Documentation for projects hosted by the Foundation.</h1>
-        <p>Want to join? <a href="https://symphonyoss.atlassian.net/wiki/display/FM/Contribution">Become a
-            Contributor</a></p>
-        <p>More about <a href="https://symphony.foundation/">Symphony Software Foundation</a></p>
-        <p>&nbsp;</p>
-        <p>More about the Foundation:
-            <br/><a href="http://symphonyoss.atlassian.net/wiki" target="_blank">Wiki</a>, <a
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Enforce vertical alignment for filter dropdowns -->
+    <style>
+      li {
+        margin: 10px;
+      }
+
+      #projects {
+      position: relative;
+      max-width: 100%;
+      width: 100%;
+      }
+
+      img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      }
+
+      .white-panel {
+      position: absolute;
+      background: white;
+      box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+      padding: 10px;
+      }
+
+      .white-panel h1 {
+      font-size: 1em;
+      }
+
+      .white-panel h1 a {
+      color: #A92733;
+      }
+
+      .white-panel:hover {
+      box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+      margin-top: -5px;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">All Projects</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form method="get" id="filters">
+            <ul class="nav navbar-nav"/>
+            <input id="filter-submit" type="submit" style="display:none"/>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid" role="main">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Foundation project catalogue</h3>
+            </div>
+            <div class="panel-body">
+              Want to join? <a href="https://symphonyoss.atlassian.net/wiki/display/FM/Contribution">Become a Contributor</a>.
+              <br/>
+              More about the Foundation:
+              <br/>
+              <a href="http://symphonyoss.atlassian.net/wiki" target="_blank">Wiki</a>, <a
                     href="http://github.com/symphonyoss" target="_blank">SymphonyOSS on Github</a>, <a
                     href="https://twitter.com/symphonyOSS" target="_blank">Twitter</a>, <a
                     href="http://linkedin.com/company/symphony-software-foundation" target="_blank">LinkedIN</a> and <a
-                    href="http://facebook.com/symphonyOSS" target="_blank">Facebook</a></p>
+                    href="http://facebook.com/symphonyOSS" target="_blank">Facebook</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9 row">
+          <section id="projects"/>
+        </div>
+      </div>      
     </div>
 
-    <div id="filter-container" class="grid grid-3">
-        <!--         <div id="statistics" class="grid-1 alpha header">
-                  <h1>Statistics</h1>
-                  <p>
-                    <a href="https://symphonyoss.biterg.io/app/kibana#/dashboard/Overview?_g=()"><span id="num-projects"><img src="assets/spinner.gif" /></span> public projects</a>
-                  </p>
-                  <p>
-                    <a href="https://github.com/symphonyoss/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
-                  </p>
-                  <p class="email"><a href="mailto:info@symphony.foundation">info@symphony.foundation</a></p>
-                </div>
-         -->
-        <!-- <div id="recently-updated" class="grid-2 omega header">
-          <h1>Recently updated <a href="https://github.com/symphonyoss/repositories">View All on GitHub</a></h1>
-          <ol id="recently-updated-repos"></ol>
-        </div> -->
-    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      // TODO - enable it when ready
+      //_gaq.push(['_setAccount', 'UA-89349362-4']);
+      _gaq.push(['_trackPageview']);
 
-    <ol id="repos"></ol>
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
 
-</div>
-<script type="text/javascript">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  var _gaq = _gaq || [];
-  // TODO - enable it when ready
-  //_gaq.push(['_setAccount', 'UA-89349362-4']);
-  _gaq.push(['_trackPageview']);
+    <!-- Multi select banner -->
+    <script type="text/javascript" src="https://www.jquery-az.com/boots/js/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css"/>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    <!-- Custom JS -->
+    <script type="text/javascript" src="js/gh-catalogue/main.js"></script>
+    <script type="text/javascript" src="js/pinterest_grid.js"></script>
+    <script type="text/javascript">
+        (function ($, undefined) {        
+          // Invoke main.js
+          renderProjectCatalogue(true);
 
-
-</script>
-<script type="text/javascript" src="assets/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="assets/strftime.js"></script>
-<script type="text/javascript" src="js/gh-catalogue/main.js"></script>
-<script type="text/javascript">
-    (function ($, undefined) {
-      // Invoke main.js
-      renderProjectCatalogue(true);
-    })(jQuery);
-
-</script>
-</body>
+          $('#projects').pinterest_grid({
+            no_columns: 4,
+            padding_x: 20,
+            padding_y: 20,
+            margin_bottom: 50,
+            single_column_breakpoint: 700
+          });
+        })(jQuery);
+    </script>
+  </body>
 </html>

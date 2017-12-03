@@ -1,8 +1,9 @@
-function renderSorts(projects) {
+
+function sortsHTML(projects) {
   if (!$( "#sort").length) {
     var $div = $("<div>").attr("id","sort").addClass("grid-3 omega header");
-    var $h1 = $("<h1>").text("Sort By");
-    $div.append($h1);
+    var $h4 = $("<h4>").text("Sort By");
+    $div.append($h4);
     $div.appendTo("#filter-container");
   }
 
@@ -29,25 +30,44 @@ function renderSorts(projects) {
   }
 }
 
+function sortProjects(projects) {
+  // Sort by most-recently pushed to.
+  var sort_by = "activity";
+  if (isFilterSelected($('#sort-by-name > span > a'))) {
+    sort_by = "name";
+  }
+  // if (isFilterSelected($('#sort-by-activity > span > a'))) {
+  // }
+
+  if (sort_by == "name") {
+    projects.sort(function (a, b) {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+      if (b.name.toLowerCase() < a.name.toLowerCase()) return 1;
+      return 0;
+    });
+  } else {
+    projects.sort(function (a, b) {
+      var a_updated = a['repos'].sort(function(a1,b1) {
+        return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
+      })[0].updated_at;
+      var b_updated = b['repos'].sort(function(a1,b1) { 
+        return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
+      })[0].updated_at;
+
+      if (a_updated < b_updated) return 1;
+      if (b_updated < a_updated) return -1;
+      return 0;
+    });          
+  }
+}
+
+// ==================
+// Util functions
+// ==================
+
 function toggleSort(toEnable,toDisable) {
   $(toDisable).removeClass("selected");
   $(toEnable).addClass("selected");
   // Invoke main.js
   renderProjectCatalogue(false);
-}
-
-function repoCalculations(repo) {
-  // Convert pushed_at to Date.
-  repo.pushed_at = new Date(repo.pushed_at);
-
-  var weekHalfLife  = 1.146 * Math.pow(10, -9);
-
-  var pushDelta    = (new Date) - Date.parse(repo.pushed_at);
-  var createdDelta = (new Date) - Date.parse(repo.created_at);
-
-  var weightForPush = 1;
-  var weightForWatchers = 1.314 * Math.pow(10, 7);
-
-  repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
-  repo.hotness += weightForWatchers * repo.watchers / createdDelta;
 }

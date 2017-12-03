@@ -1,13 +1,76 @@
-function renderFilters(projects) {
-  $.each(projects, function (i, project) {
-    // Build the filter mask
-    filterFields.forEach (function (filterName) {
+// var url = $.url(window.location.href);
+
+// $.urlParam = function(name){
+//   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+//   return results[1] || 0;
+// }
+
+function filtersHTML(projects) {  
+  // TODO - extract ancors from req. url:
+  // Split by #, iterate on each entry
+  // Split by -, 0 is filtername, 1 is filtervalue
+  // Create map: filtername -> [filtervalue1, filtervalue2 ,...]
+  filterFields.forEach (function (filterName) {
+    $.each(projects, function (i, project) {
       var repoValue = project[filterName];
       if (repoValue) {
         addRepoFilters(filterName,repoValue);
       }
     });
+    // TODO - add onload to check input name:
+    // Split by -, 0 is filtername, 1 is filtervalue
+    // if value in map[filtername], then select it
+
+    $("select#"+filterName).multiselect({
+      maxHeight: 200,
+      onChange: function(option, checked, select) {
+        // renderProjectCatalogue(false);
+        $( "#filter-submit" ).trigger( "click" );
+        // $("form.filter").submit();
+      },
+      onInitialized: function(select, container) {
+        // TODO - Select option, if req. params are there
+        // alert('Initialized.');
+      },
+      buttonText: function(options, select) {
+        if (options.length === 0) {
+            return 'Select '+filterName;
+        } else {
+            return options.length+' '+filterName+' selected';
+        }
+      }
+    });
   });
+
+  $("li").each(function() {
+    var idField = this.attributes['id'];
+    if (idField) {
+      var id = idField.value;
+      // console.log("li id: "+id);
+      $("li#"+id+" input").each(function() {
+        var value = this.attributes['value'].value;
+        this.setAttribute('name',id);
+        this.setAttribute('id',id);
+        // TODO - work here to load req. param. values
+        // this.checked = url.param(id) === value;
+      });
+    }
+  });
+}
+
+function filterHTML(id) {
+  var $li = $("<li>").attr("class","drowdown").attr("id",id);
+  var $select = $("<select>")
+  .attr("style","visibility:hidden")
+  .attr("id",id)
+  .attr("multiple","multiple")
+  .attr("role","button");
+  $select.appendTo($li);
+  return $li;
+}
+
+function filterItemHTML(id,value) {
+  return $("<option>").attr("name",id).attr("id",id).attr("value",value).text(value);
 }
 
 function addRepoFilters(filterName, filterValue) {
@@ -20,31 +83,24 @@ function addRepoFilters(filterName, filterValue) {
     keys.push(filterValue);
   }
 
-  containerKey = "filtercontainer-"+filterName;
-  if (!$( "#"+containerKey ).length) {
-    var $div = $("<div>").attr("id",containerKey).addClass("grid-3 omega header");
-    var $h1 = $("<h1>").text(filterNameLabel(filterName));
-    $div.append($h1);
-    $div.appendTo("#filter-container");
+  var $select = $("select#"+filterName);
+  if (!$select.length) {
+    $select = filterHTML(filterName);
+    $select.appendTo("ul.navbar-nav");
   }
-
-  // console.log(`append-way-before(${keys})`);
+  
   keys.forEach (function (key) {
-    filterKey = "filter-"+key;
-    if (!$("#"+filterKey).length) {
-      var $p = $("<p>").attr("id",filterKey).attr("style","display:inline");
-      var $name = $("<a>").attr("href", "#").text(filterValueLabel(filterName,key)).addClass("name").click(function(){
-        toggleFilter(this);
-      });
-      $p.append($("<span>").append($name));
-      $p.appendTo("#"+containerKey);
+    var $option = $("option#"+key);
+    if (!$option.length) {
+      var label = filterValueLabel(filterName,key);
+      filterItemHTML(key,label).appendTo("select#"+filterName);
     }
   });
 }
 
 // Return true if at least one of the repos matches
-function filterProject(project, firstStart) {
-    var ret = firstStart;
+function filterProject(project, showAll) {
+    var ret = showAll;
     filterFields.forEach(function(filterName){
         var repoValue = project[filterName];
         $('#filtercontainer-'+filterName+' > p > span > a').each(function(i) {
@@ -66,19 +122,12 @@ function filterProject(project, firstStart) {
     return ret;
 }
 
+// ==================
+// Util functions
+// ==================
+
 function isFilterSelected(item) {
   return ($(item).attr("class") && $(item).attr("class").split(' ').indexOf('selected') > -1);
-}
-
-function toggleFilter(filterLink) {
-  console.log("toggling filter "+filterLink + " - "+isFilterSelected(filterLink));
-  if (isFilterSelected(filterLink)) {
-    $(filterLink).removeClass("selected");
-  } else {
-    $(filterLink).addClass("selected");
-  }
-  // Invoke main.js
-  renderProjectCatalogue(false);
 }
 
 function filterNameLabel(filterName) {
