@@ -12,10 +12,16 @@
           <a class="navbar-brand" href="#">All Projects</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form method="get" id="filters">
-            <ul class="nav navbar-nav"/>
-            <input id="filter-submit" type="submit" style="display:none"/>
-          </form>
+          <ul class="nav navbar-nav">
+            <li id="sort">
+              <select id="sort" style="visibility:hidden">
+                <option id="heat" value="Heat" name="Heat">Heat</option>
+                <option id="name" value="Name" name="Name">Name</option>
+                <!-- <option id="activity" value="Activity" name="Activity">Activity</option> -->
+              </select>
+            </li>
+          </ul>
+          <a id="deeplink" href="#" target="_blank">Copy URL</a>
         </div>
       </div>
     </nav>
@@ -72,5 +78,18 @@
 
     <!-- Custom JS -->
     <script type="text/javascript" src="js/gh-catalogue/main.js"></script>
+    <script type="text/javascript">
+      (function ($, undefined) {
+        renderProjectCatalogue(true);
+
+        $('#projects').pinterest_grid({
+          no_columns: 4,
+          padding_x: 20,
+          padding_y: 20,
+          margin_bottom: 50,
+          single_column_breakpoint: 700
+        });
+      })(jQuery);
+    </script>
   </body>
 </html>

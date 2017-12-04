@@ -1,4 +1,19 @@
 // ==================
+// Main functions
+// ==================
+
+function getParamQuery() {
+  var paramQuery = "#";
+  filterFields.forEach(function(filterName){
+    $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {
+      var filterValue = resolveValueLabel(filterName,$(this).text()).trim();
+      paramQuery += `${filterName}|${filterValue}&`;
+    });
+  });
+  return paramQuery;
+}
+
+// ==================
 // Filtering functions
 // ==================
 
