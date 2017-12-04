@@ -8,41 +8,41 @@ function filterProjects(projects) {
     });
   }
 
-  // console.log("Param Hash:");
-  // console.log(paramHash);
-  
   // Reset page
   $("#projects").empty();
   $("#deeplink").attr("href",`/${getParamQuery().slice(0, -1)}`);
   if (projects.length == filteredProjects.length) {
-    $(".navbar-brand").text(`${projects.length} (all) projects shown`);
+    $("#project-recap").text(`${projects.length} (all) projects shown`);
   } else {
-    $(".navbar-brand").text(`${filteredProjects.length}/${projects.length} projects shown`);
+    $("#project-recap").text(`${filteredProjects.length}/${projects.length} projects shown`);
   }
-  // $("#recently-updated-repos").empty();
-  // $("#num-projects").text(projects.length);
-
   return filteredProjects;
 }
 
 // Return true if at least one of the repos matches
 function filterProject(project) {
-    var ret = false;
-    filterFields.forEach(function(filterName){
-      var repoValue = project[filterName];
-      $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {
-        var filterValue = resolveValueLabel(filterName,$(this).text()).trim();
-        if (jQuery.type(repoValue) === "string" && repoValue == filterValue) {
-          ret = true;
-        } else {
-            // This is a multi-value filter, like the languages field
-            for (key in repoValue) {
-              if (key == filterValue) {
-                  ret = true;
-              }
+  var ret = true;
+  for (filterName in config['filters']) {
+    var repoValue = project[filterName];
+    var itemRet = false;
+    var filterRet = $(`li#${filterName} > span > div > ul > li.active`).length == 0;
+    $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {
+      var filterValue = decode($(this).text(),filterName);
+      if (jQuery.type(repoValue) === "string" && decode(repoValue,filterName) == filterValue) {
+        itemRet = true;
+        // console.log(`1. It's a match for ${filterName}=${filterValue}`);
+      } else {
+          // This is a multi-value filter, like the languages field
+          for (key in repoValue) {
+            if (key == decode(filterValue)) {
+                itemRet = true;
+                // console.log(`2. It's a match for ${filterName}=${filterValue}`);
             }
-        }
-      });
+          }
+      }
     });
-    return ret;
+    if (!itemRet && !filterRet) ret = false;
+  }
+  // console.log(`3. return ${ret} for ${project['name']}`);
+  return ret;
 }

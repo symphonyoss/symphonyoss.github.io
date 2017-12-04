@@ -26,21 +26,19 @@ function getParamHash() {
 function renderProjectCatalogue(firstRun) {
   $.get("projects.json", function (projects) {
     if (firstRun) {
-      // Invoke filters.js
+      // Invoke html-render.js
       filtersHTML(projects);
-      // Invoke sort.js
       sortsHTML(projects);
     }
 
-    // Filtering
+    // Invoke filters.js
     var filteredProjects = filterProjects(projects);
 
-    // Sorting
-    // TODO - reimplement
     // Invoke sort.js
-    // sortProjects(filteredProjects);
+    sortProjects(filteredProjects);
+
+    // Invoke html-render.js - render out projects
     $.each(filteredProjects, function (projectIdx, project) {
-      // Invoke projects.js - render out projects
       projectHTML(project).appendTo("#projects");
     });
   });

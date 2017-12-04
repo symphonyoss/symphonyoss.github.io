@@ -34,7 +34,7 @@ function badgeHTML(type,value) {
 // ==================
 
 function filtersHTML(projects) {  
-  filterFields.forEach (function (filterName) {
+  for (filterName in config['filters']) {
     $.each(projects, function (i, project) {
       var repoValue = project[filterName];
       if (repoValue) {
@@ -47,17 +47,21 @@ function filtersHTML(projects) {
       onChange: function(option, checked, select) {
         var paramHash = getParamHash();
         renderProjectCatalogue(false,paramHash);
-      },
-      buttonText: function(options, select) {
-        if (options.length === 0) {
-            return `Select ${filterName}`;
-        } else {
-            return options.length+' '+filterName+' selected';
-        }
       }
+      // TODO - not working properly, since filterName is not properly defined
+      // buttonText: function(options, select) {
+      //   if (options.length === 0) {
+      //     return `Select ${filterName}`;
+      //   } else {
+      //     console.log(options);
+      //     console.log(typeof select);
+      //     console.log(select.id);
+      //     return options.length+' '+filterName+' selected';
+      //   }
+      // }
     });
     $(`select#${filterName}`).multiselect('select', getParamHash()[filterName]);
-  });
+  }
 
   $("li").each(function() {
     var idField = this.attributes['id'];
@@ -88,7 +92,7 @@ function filterItemsHTML(filterName, filterValue) {
   var keys = [];
   if (filterName === "languages") {
     for (var lang in filterValue) {
-      keys.push(lang.replace('#','-sharp').replace('+','-plus').replace('+','-plus'));
+      keys.push(encode(lang));
     }
   } else {
     keys.push(filterValue);
@@ -103,7 +107,7 @@ function filterItemsHTML(filterName, filterValue) {
   keys.forEach (function (key) {
     var $option = $("option#"+key);
     if (!$option.length) {
-      var label = filterValueLabel(filterName,key);
+      var label = encode(key, filterName);
       filterItemHTML(key,label).appendTo("select#"+filterName);
     }
   });
@@ -121,13 +125,6 @@ function sortsHTML(projects) {
   // Using Bootstrap multi-select, see index.html for import
   $("select#sort").multiselect({
     onChange: function(option, checked, select) {
-      // var paramHash = getParamHash();
-
-    // document.getElementById("content").innerHTML = response.html;
-    // document.title = response.pageTitle;
-    // window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
-
-      // renderProjectCatalogue(false,paramHash);
       renderProjectCatalogue(false);
     },
     buttonText: function(options, select) {
@@ -139,34 +136,3 @@ function sortsHTML(projects) {
     }
   }).appendTo("ul.navbar-nav");
 }
-
-// function sortsHTML(projects) {
-//   if (!$( "#sort").length) {
-//     var $div = $("<div>").attr("id","sort").addClass("grid-3 omega header");
-//     var $h4 = $("<h4>").text("Sort By");
-//     $div.append($h4);
-//     $div.appendTo("#filter-container");
-//   }
-
-//   if (!$("#sort-by-name").length) {
-//     var $p = $("<p>").attr("id","sort-by-name").attr("style","display:inline");
-//     var $name = $("<a>").attr("href", "#").text("Name").addClass("name").click(function(){
-//       toggleSort(this,$("#sort-by-activity > span > a"));
-//     });
-//     $p.append($("<span>").append($name));
-//     $p.appendTo("#sort");
-//   }
-
-//   if (!$("#sort-by-activity").length) {
-//     var $p = $("<p>").attr("id","sort-by-activity").attr("style","display:inline");
-//     var $name = $("<a>").attr("href", "#").text("Last activity").addClass("name").click(function(){
-//       toggleSort(this,$("#sort-by-name > span > a"));
-//     });
-//     $p.append($("<span>").append($name));
-//     $p.appendTo("#sort");
-//   }
-
-//   if (!isFilterSelected($('#sort-by-name > span > a')) && !isFilterSelected($('#sort-by-activity > span > a'))) {
-//     $('#sort-by-activity > span > a').addClass("name selected");
-//   }
-// }

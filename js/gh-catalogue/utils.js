@@ -2,53 +2,60 @@
 // Main functions
 // ==================
 
+function encode(label,filterName) {
+  if (filterName === 'sort') {
+    return config['sort']['valueLabels'][label];
+  } else if (filterName && config['filters'][filterName]['valueLabels']) {
+    return config['filters'][filterName]['valueLabels'][label];
+  } else {
+    return label.replace('#','-sharp').replace('+','-plus').trim();
+  }
+}
+
+function decode(label, filterName) {
+  label = label.trim();
+  if (filterName === 'sort') {
+    for (labelKey in config['sort']['valueLabels']) {
+      if (config['sort']['valueLabels'][labelKey] == label.trim()) {
+        return labelKey;
+      }
+    }    
+  } else if (filterName && config['filters'][filterName]['valueLabels']) {
+    for (labelKey in config['filters'][filterName]['valueLabels']) {
+      if (config['filters'][filterName]['valueLabels'][labelKey] == label) {
+        return labelKey;
+      }
+    }
+  }
+  return label.replace('-sharp','#').replace('-plus','+').trim();
+}
+
 function getParamQuery() {
   var paramQuery = "#";
-  filterFields.forEach(function(filterName){
+  for (filterName in config['filters']) {
     $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {
-      var filterValue = resolveValueLabel(filterName,$(this).text()).trim();
+      var filterValue = decode($(this).text());
       paramQuery += `${filterName}|${filterValue}&`;
     });
-  });
-  return paramQuery;
-}
-
-// ==================
-// Filtering functions
-// ==================
-
-function isFilterSelected(item) {
-  return ($(item).attr("class") && $(item).attr("class").split(' ').indexOf('selected') > -1);
-}
-
-function filterNameLabel(filterName) {
-  return filterNameLabels[filterName] ? filterNameLabels[filterName] : "Filter by "+filterName;
-}
-
-function filterValueLabel(filterName,filterValue) {
-  return (filterValueLabels[filterName] && filterValueLabels[filterName][filterValue]) ? filterValueLabels[filterName][filterValue] : filterValue;
-}
-
-function resolveValueLabel(filterName,label) {
-  var ret = label;
-  if (filterValueLabels[filterName]) {
-    $.each(filterValueLabels[filterName],function(filterValue,filterLabel) {
-      if (filterLabel === label) {
-        ret = filterValue;
-      }
-    });
   }
-  return ret;
+  return paramQuery;
 }
 
 // ==================
 // Projects functions
 // ==================
 
+function getConfigField(repo,field) {
+  if (config['repos'][repo.repositoryName] && config['repos'][repo.repositoryName][field]) {
+    return config['repos'][repo.repositoryName][field];
+  }
+  return null;
+}
+
 function repoUrl(repo) {
-  return repoUrls[repo.repositoryName] || repo.html_url || '#';
+  return getConfigField(repo,'description') || repo.html_url || '#';
 }
 
 function repoDescription(repo) {
-  return repoDescriptions[repo.name] || repo.description || repo.name;
+  return getConfigField(repo,'docs') || repo.description || repo.repositoryName;
 }
