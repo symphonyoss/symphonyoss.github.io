@@ -4,51 +4,6 @@
     <title>Symphony Software Foundation</title>
     <link rel="shortcut icon" href="assets/favicon.ico"/>
     <meta name="description" content="Projects hosted by the Foundation">
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-    <!-- Enforce vertical alignment for filter dropdowns -->
-    <style>
-      li {
-        margin: 10px;
-      }
-
-      #projects {
-      position: relative;
-      max-width: 100%;
-      width: 100%;
-      }
-
-      img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      }
-
-      .white-panel {
-      position: absolute;
-      background: white;
-      box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
-      padding: 10px;
-      }
-
-      .white-panel h1 {
-      font-size: 1em;
-      }
-
-      .white-panel h1 a {
-      color: #A92733;
-      }
-
-      .white-panel:hover {
-      box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
-      margin-top: -5px;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      }
-    </style>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -91,43 +46,31 @@
       </div>      
     </div>
 
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      // TODO - enable it when ready
-      //_gaq.push(['_setAccount', 'UA-89349362-4']);
-      _gaq.push(['_trackPageview']);
+    <!-- Google Analytics -->
+    <script type="text/javascript" src="js/analytics.js"></script>
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Multi select banner -->
+    <!-- https://github.com/davidstutz/bootstrap-multiselect -->
     <script type="text/javascript" src="https://www.jquery-az.com/boots/js/bootstrap-multiselect/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css"/>
 
+    <!-- JS URL -->
+    <!-- https://github.com/websanova/js-url -->
+    <script type="text/javascript" src="js/ext/url.min.js"></script>
+
+    <!-- Pinterest Grid for JQuery -->
+    <!-- https://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html -->
+    <script type="text/javascript" src="js/ext/pinterest_grid.js"></script>
+    <link rel="stylesheet" href="css/pinterest-grid.css" type="text/css"/>
+
     <!-- Custom JS -->
     <script type="text/javascript" src="js/gh-catalogue/main.js"></script>
-    <script type="text/javascript" src="js/pinterest_grid.js"></script>
-    <script type="text/javascript">
-        (function ($, undefined) {        
-          // Invoke main.js
-          renderProjectCatalogue(true);
-
-          $('#projects').pinterest_grid({
-            no_columns: 4,
-            padding_x: 20,
-            padding_y: 20,
-            margin_bottom: 50,
-            single_column_breakpoint: 700
-          });
-        })(jQuery);
-    </script>
   </body>
 </html>

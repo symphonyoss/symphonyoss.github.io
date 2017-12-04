@@ -1,42 +1,47 @@
+$.getScript( url('path') + "js/gh-catalogue/config.js", function( data, textStatus, jqxhr ) { });
+$.getScript( url('path') + "js/gh-catalogue/utils.js", function( data, textStatus, jqxhr ) { });
+$.getScript( url('path') + "js/gh-catalogue/html-render.js", function( data, textStatus, jqxhr ) { });
+$.getScript( url('path') + "js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
+$.getScript( url('path') + "js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) { });
 
-var relPath = window.location.pathname;
-if (relPath.endsWith("index.html")) {
-    relPath = relPath.substring(0, relPath.length - "index.html".length);
-}
+(function ($, undefined) {
+  console.log("Printing urls");
+  console.log(url('#'));
+  console.log(url('#projectState'));
+  console.log(url('#language'));
 
-$.getScript( relPath + "js/gh-catalogue/projects.js", function( data, textStatus, jqxhr ) { });
-$.getScript( relPath + "js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
-$.getScript( relPath + "js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) { });
+  renderProjectCatalogue(true);
 
-// Invoked by index.html
+  $('#projects').pinterest_grid({
+    no_columns: 4,
+    padding_x: 20,
+    padding_y: 20,
+    margin_bottom: 50,
+    single_column_breakpoint: 700
+  });
+})(jQuery);
+
 function renderProjectCatalogue(firstRun) {
   var projects = []
-  $().ready(function () {
-    $.get("projects.json", function (projects) {
-      if (firstRun) {
-        // Invoke filters.js
-        filtersHTML(projects);
-        // Invoke sort.js
-        sortsHTML(projects);
-      }
-      // Reset page
-      $("#repos").empty();
-      $("#recently-updated-repos").empty();
-      $("#num-projects").text(projects.length);
-
-      var filteredProjects = projects.filter(function(project) {
-        // Invoke filters.js - filter projects based on filter values
-        return filterProject(project, firstRun);
-      });
-
-      // TODO - reimplement
+  $.get("projects.json", function (projects) {
+    if (firstRun) {
+      // Invoke filters.js
+      filtersHTML(projects);
       // Invoke sort.js
-      // sortProjects(filteredProjects);
+      sortsHTML(projects);
+    }
 
-      $.each(filteredProjects, function (projectIdx, project) {
-        // Invoke projects.js - render out projects
-        projectHTML(project).appendTo("#projects");
-      });
+    // Filtering
+    projects = filterProjects(projects, firstRun);
+
+    // Sorting
+    // TODO - reimplement
+    // Invoke sort.js
+    // sortProjects(filteredProjects);
+
+    $.each(projects, function (projectIdx, project) {
+      // Invoke projects.js - render out projects
+      projectHTML(project).appendTo("#projects");
     });
   });
 }
