@@ -4,6 +4,7 @@
 
 function projectHTML(project) {
   // Render lifecycle badge
+  // console.log(`rendering ${project['name']}`);
   var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
     $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)).append(
     $("<h4>").append(project['name'])));

@@ -116,43 +116,6 @@
     "Shell": 4382
   }
 }, {
-  "watchers": 15,
-  "name": "Documentation and Examples",
-  "hotness": 139,
-  "repos": [{
-    "metadataVersion": "2.0.0",
-    "contribJiraKey": "CONTRIB-42",
-    "repositoryName": "app-auth-example",
-    "projectName": "Documentation and Examples",
-    "contributionDate": "2017-02-21"
-  }, {
-    "metadataVersion": "2.0.0",
-    "contribJiraKey": "CONTRIB-5",
-    "repositoryName": "extension-api-examples",
-    "projectState": "INCUBATING",
-    "projectName": "Documentation and Examples",
-    "contributionDate": "2016-06-16"
-  }, {
-    "metadataVersion": "2.0.0",
-    "contribJiraKey": "CONTRIB-6",
-    "repositoryName": "embedding-api-examples",
-    "projectState": "INCUBATING",
-    "projectName": "Documentation and Examples",
-    "contributionDate": "2016-06-16"
-  }],
-  "size": 1345,
-  "contribJiraKey": "CONTRIB-42",
-  "projectState": null,
-  "collaborators": 22,
-  "stars": 15,
-  "forks": 14,
-  "languages": {
-    "Java": 114898,
-    "JavaScript": 100893,
-    "HTML": 12563,
-    "CSS": 1908
-  }
-}, {
   "watchers": 20,
   "name": "OpenFin Sym Integration",
   "hotness": 139,

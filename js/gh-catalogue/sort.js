@@ -3,11 +3,11 @@ function sortProjects(projects) {
   var sortValue = "hotness-up";
   $(`li#sort > span > div > ul > li.active`).each(function(i) {
     sortValue = decode($(this).text(),'sort');
-    console.log(`sort value ${$(this).text()}, label ${sortValue}`);
+    // console.log(`sort value ${$(this).text()}, label ${sortValue}`);
   });
   var sort_by = sortValue.split('-')[0];
   var direction = (sortValue.split('-')[1] == "up") ? 1 : -1;
-  console.log(`Sorting by ${sort_by}, direction ${direction}`);
+  // console.log(`Sorting by ${sort_by}, direction ${direction}`);
 
   if (sort_by == "hotness") {
     projects.sort(function (a, b) {

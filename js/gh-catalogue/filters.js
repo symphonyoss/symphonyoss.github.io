@@ -1,7 +1,7 @@
 function filterProjects(projects) {
   // Filter only if there are some filter values defined
   var filteredProjects = projects;
-  if (Object.keys(getParamHash()).length > 0) {
+  if (getParamQuery() != '#') {
     filteredProjects = projects.filter(function(project) {
       // Invoke filters.js - filter projects based on filter values
       return filterProject(project);
