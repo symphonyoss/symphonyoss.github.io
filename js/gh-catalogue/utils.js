@@ -55,7 +55,3 @@ function getConfigField(repo,field) {
 function repoUrl(repo) {
   return getConfigField(repo,'docs-link') || repo.html_url || '#';
 }
-
-function repoDescription(repo) {
-  return getConfigField(repo,'description') || repo.description || repo.repositoryName;
-}

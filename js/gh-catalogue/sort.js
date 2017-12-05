@@ -1,4 +1,5 @@
 function sortProjects(projects) {
+  // TODO - set as default as soon as available?
   // var sort_by = "activity";
   var sortValue = "hotness-up";
   $(`li#sort > span > div > ul > li.active`).each(function(i) {

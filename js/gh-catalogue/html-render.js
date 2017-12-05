@@ -4,7 +4,7 @@
 
 function projectHTML(project) {
   // Render lifecycle badge
-  // console.log(`rendering ${project['name']}`);
+  // console.log(`Rendering ${project['name']}`);
   var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
     $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)).append(
     $("<h4>").append(project['name'])));
@@ -28,9 +28,8 @@ function projectHTML(project) {
   };
   $langs.appendTo($article);
 
-  // $("<p>").text(repoDescription(project['repos'][0])).appendTo($article);
-  // TODO - show project languages
-  // $link.append($("<h3>").text(project['languages']));
+  // TODO - show a project description, when available in projects.json
+  // $("<p>").text(repoDescription(project['description'])).appendTo($article);
   $.each(project['repos'], function (i, repo) {
     $("<p>").append(
       $("<a>").attr("href", repoUrl(repo)).text(
@@ -70,17 +69,6 @@ function filtersHTML(projects) {
         var paramHash = getParamHash();
         renderProjectCatalogue(false,paramHash);
       }
-      // TODO - not working properly, since filterName is not properly defined
-      // buttonText: function(options, select) {
-      //   if (options.length === 0) {
-      //     return `Select ${filterName}`;
-      //   } else {
-      //     console.log(options);
-      //     console.log(typeof select);
-      //     console.log(select.id);
-      //     return options.length+' '+filterName+' selected';
-      //   }
-      // }
     });
     $(`select#${filterName}`).multiselect('select', getParamHash()[filterName]);
   }
@@ -89,7 +77,6 @@ function filtersHTML(projects) {
     var idField = this.attributes['id'];
     if (idField) {
       var id = idField.value;
-      // console.log("li id: "+id);
       $("li#"+id+" input").each(function() {
         var value = this.attributes['value'].value;
         this.setAttribute('name',id);
