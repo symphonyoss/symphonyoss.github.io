@@ -59,5 +59,5 @@ function getConfigField(repo,field) {
 }
 
 function repoUrl(repo) {
-  return getConfigField(repo,'docs-link') || repo.html_url || '#';
+  return getConfigField(repo,'docs-link') || `https://github.com/symphonyoss/${repo['repositoryName']}`;
 }
