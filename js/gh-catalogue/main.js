@@ -1,9 +1,4 @@
 var relPath = url('path').replace('index.html','');
-$.getScript( relPath + "js/gh-catalogue/config.js", function( data, textStatus, jqxhr ) { });
-$.getScript( relPath + "js/gh-catalogue/utils.js", function( data, textStatus, jqxhr ) { });
-$.getScript( relPath + "js/gh-catalogue/html-render.js", function( data, textStatus, jqxhr ) { });
-$.getScript( relPath + "js/gh-catalogue/sort.js", function( data, textStatus, jqxhr ) { });
-$.getScript( relPath + "js/gh-catalogue/filters.js", function( data, textStatus, jqxhr ) { });
 
 // Loads initial URL state from lib, then returns the saved state
 function getParamHash() {
