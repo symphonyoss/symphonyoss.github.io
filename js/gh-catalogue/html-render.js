@@ -10,11 +10,11 @@ function projectHTML(project) {
     $("<h4>").append(project['name'])));
 
   var $row = $("<div class='row badges-row'>");
-  badgeHTML("forks",project['forks']).appendTo($row);
+  badgeHTML("forks",project['forks']).appendTo($row).attr("class","github-stats-space");
   badgeHTML("watchers",project['watchers']).appendTo($row);
   $row.appendTo($article);
   $row = $("<div class='row badges-row'>");
-  badgeHTML("stars",project['stars']).appendTo($row);
+  badgeHTML("stars",project['stars']).appendTo($row).attr("class","github-stats-space");
   badgeHTML("collaborators",project['collaborators']).appendTo($row);
   $row.appendTo($article);
 
@@ -87,12 +87,14 @@ function filtersHTML(projects) {
 }
 
 function filterHTML(id) {
+  var $name = $("<p>").text(id).attr("style","font-size: 18px");
   var $li = $("<li>").attr("class","drowdown").attr("id",id);
   var $select = $("<select>")
   .attr("style","visibility:hidden")
   .attr("id",id)
   .attr("multiple","multiple")
   .attr("role","button");
+  $name.appendTo($li);
   $select.appendTo($li);
   return $li;
 }
