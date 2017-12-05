@@ -7,23 +7,13 @@
   </head>
   <body>
     <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <a id="project-recap" class="navbar-brand" href="#">All Projects</a>
+      <div class="container navbar-size">
+        <div>
+          <a href="#" style="float: left;"><img src="assets/ssf-logo.png" alt="SymphonySoftwareFoundation" title="SymphonySoftwareFoundation" id='logo'/></a>
+          <p1 class="project-title">Project Catalogue - Symphony Software Foundation</p1>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li id="sort">
-              <select id="sort" style="visibility:hidden">
-                <option id="hotness-down" value="hotness-down">Heat (desc)</option>
-                <option id="hotness-up" value="hotness-up">Heat (asc)</option>
-                <option id="name-down" value="name-down">Name (desc)</option>
-                <option id="name-up" value="name-up">Name (asc)</option>
-                <!-- <option id="activity" value="Activity" name="Activity">Activity</option> -->
-              </select>
-            </li>
-          </ul>
-          <a id="deeplink" class="navbar-brand" href="#" target="_blank">Copy URL</a>
+          <a id="deeplink" class="copy-url" href="#" target="_blank">Copy URL</a>
         </div>
       </div>
     </nav>
@@ -31,10 +21,33 @@
     <div class="container-fluid" role="main">
       <div class="row">
         <div class="col-sm-3">
-          <center><img src="assets/ssf-logo.png" id='logo'/></center>
+          <div class="navbar-collapse collapse">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Browse</h3>
+              </div>
+              <div class="panel-body">
+                <ul class="nav navbar-nav">
+                  <li id="sort">
+                    <select id="sort" style="visibility:hidden">
+                      <option id="hotness-down" value="hotness-down">Heat (desc)</option>
+                      
+                      <option id="hotness-up" value="hotness-up">Heat (asc)</option>
+                      
+                      <option id="name-down" value="name-down">Name (desc)</option>
+
+                      <option id="name-up" value="name-up">Name (asc)</option>
+
+                      <!-- <option id="activity" value="Activity" name="Activity">Activity</option> -->
+                    </select>
+                  </li><br>
+                </ul>
+              </div>
+            </div>
+          </div>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Project Catalogue - Symphony Software Foundation</h3>
+              <h3 class="panel-title">Welcome!</h3>
             </div>
             <div class="panel-body">
               Welcome to the Project Catalogue of the <a href="symphony.foundation" target="_blank">Symphony Software Foundation</a>! Projects that are hosted on our <a href="github.com/symphonyoss">GitHub Organisation</a> are browsable from this page, which adds Foundation-specific metadata (such as the <a href="https://symphonyoss.atlassian.net/wiki/spaces/FM/pages/3211338/Project+Lifecycle">project lifecycle badge</a>) on top of stats crawled via GitHub API.
@@ -68,6 +81,9 @@
           </div>
         </div>
         <div class="col-sm-9 row">
+          <div>
+          <h3 id="project-recap" href="#">All Projects</h3>
+          </div>
           <section id="projects"/>
         </div>
       </div>      
