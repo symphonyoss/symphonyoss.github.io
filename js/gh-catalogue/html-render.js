@@ -9,12 +9,12 @@ function projectHTML(project) {
     $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)).append(
     $("<h4>").append(project['name'])));
 
-  var $row = $("<div class='row'>");
-  badgeHTML("forks",project['forks']).appendTo($row);
+  var $row = $("<div class='row badges-row'>");
+  badgeHTML("forks",project['forks']).appendTo($row).attr("class","github-stats-space");
   badgeHTML("watchers",project['watchers']).appendTo($row);
   $row.appendTo($article);
-  $row = $("<div class='row'>");
-  badgeHTML("stars",project['stars']).appendTo($row);
+  $row = $("<div class='row badges-row'>");
+  badgeHTML("stars",project['stars']).appendTo($row).attr("class","github-stats-space");
   badgeHTML("collaborators",project['collaborators']).appendTo($row);
   $row.appendTo($article);
 
@@ -24,7 +24,7 @@ function projectHTML(project) {
   for (lang in project['languages']) {
     count++;
     langHTML(toLabel(lang,'languages')).appendTo($langs);
-    if (count == 5) break;
+    if (count == 6) break;
   };
   $langs.appendTo($article);
 
@@ -33,21 +33,21 @@ function projectHTML(project) {
   $.each(project['repos'], function (i, repo) {
     $("<p>").append(
       $("<a>").attr("href", repoUrl(repo)).text(
-        repo['repositoryName'])).appendTo($article);
+        repo['repositoryName']).attr("class","reponame-position")).appendTo($article).attr("class","line-separation");
   });
   return $article;
 }
 
 function badgeHTML(type,value) {
   var url = `assets/gh-icons/${type.toLowerCase()}.png`;
-  var $span = $("<span>").text(value);
-  $span.append($("<img id='badges'>").attr("src",url));
+  var $span = $("<span>").text(value).attr("style","text-align: center");
+  $span.append($("<img id='badges'>").attr("title",type).attr("src",url));
   return $span;
 }
 
 function langHTML(value) {
   var url = `assets/langs/${value.toLowerCase()}.png`;
-  return $("<img id='badges'>").attr("src",url);
+  return $("<img id='badges' class='lang-position'>").attr("src",url).attr("title", value);
 }
 
 // ==================
@@ -87,12 +87,14 @@ function filtersHTML(projects) {
 }
 
 function filterHTML(id) {
+  var $name = $("<p>").text(id).attr("style","font-size: 18px");
   var $li = $("<li>").attr("class","drowdown").attr("id",id);
   var $select = $("<select>")
   .attr("style","visibility:hidden")
   .attr("id",id)
   .attr("multiple","multiple")
   .attr("role","button");
+  $name.appendTo($li);
   $select.appendTo($li);
   return $li;
 }
@@ -110,7 +112,7 @@ function filterItemsHTML(filterName, filterValue) {
   var $select = $("select#"+filterName);
   if (!$select.length) {
     $select = filterHTML(filterName);
-    $select.appendTo("ul.navbar-nav");
+    $select.appendTo("ul.navbar-nav").after('<br />');
   }
   
   keys.forEach (function (key) {

@@ -49,3 +49,41 @@ img {
       -o-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
 }
+/* NAVBAR CSS */
+.copy-url{
+      float: right;
+      line-height: 70px;
+      font-size: 24px;
+}
+.project-title{
+      float: left;
+      line-height: 70px;
+      font-size: 24px;
+}
+.navbar-size{
+      width: 100%;
+      float:left;
+}
+/* CARDS CSS */
+.badges-row{
+      text-align: center;
+      margin-top: 5%;
+      margin-bottom: 5%;
+}
+.line-separation{
+      border-top: 1px solid gray;
+      line-height: 22px;
+      margin-top: 5%;
+}
+
+.lang-position{
+      margin-right: 5%;
+      margin-top: 2%;
+}
+.reponame-position{
+      margin-left: 1%;
+      line-height: 30px;
+}
+.github-stats-space{
+      margin-right: 15%;
+}
