@@ -1,3 +1,10 @@
+.gh-stats-values {
+      text-align: center;
+}
+
+img.project-state-badge {
+      width:100px
+}
 #project-recap {
     margin-top: 0px;
     margin-bottom: 30px;
@@ -82,7 +89,8 @@ img {
       margin-top: 5%;
 }
 .gh-icons{
-      margin-right: 5%;
+      margin-right: 2%;
+      margin-left: 2%;
       margin-top: 2%;
       width:25px;
 }

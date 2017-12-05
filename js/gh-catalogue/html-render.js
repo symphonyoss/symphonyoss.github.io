@@ -7,15 +7,15 @@ function projectHTML(project) {
   // console.log(`Rendering ${project['name']}`);
   var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
     $("<h4>").append(project['name'])).append(
-    $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)));
+    $("<img>").attr("class","project-state-badge").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)));
 
   var $row = $("<div class='row badges-row'>");
   badgeHTML("forks",project['forks']).appendTo($row).attr("class","github-stats-space");
-  badgeHTML("watchers",project['watchers']).appendTo($row);
+  badgeHTML("watchers",project['watchers'],"left").appendTo($row);
   $row.appendTo($article);
   $row = $("<div class='row badges-row'>");
-  badgeHTML("stars",project['stars']).appendTo($row).attr("class","github-stats-space");
-  badgeHTML("collaborators",project['collaborators']).appendTo($row);
+  badgeHTML("stars",project['stars'],"right").appendTo($row).attr("class","github-stats-space");
+  badgeHTML("collaborators",project['collaborators'],"left").appendTo($row);
   $row.appendTo($article);
 
   // Render languages
@@ -38,11 +38,17 @@ function projectHTML(project) {
   return $article;
 }
 
-function badgeHTML(type,value) {
+function badgeHTML(type,value,textPosition) {
   var url = `assets/gh-icons/${type.toLowerCase()}.png`;
-  var $span = $("<span>").text(value).attr("style","text-align: center");
-  $span.append($("<img>").attr("class",'gh-icons').attr("title",type).attr("src",url));
-  return $span;
+  var $container = $("<span>");
+  var $span = $("<span>").attr("class","gh-stats-values").append($("<b>").text(value));
+  var $img = $("<img>").attr("class",'gh-icons').attr("title",type).attr("src",url);
+  if (textPosition == 'left') {
+    $container.append($span).append($img);
+  } else {
+    $container.append($img).append($span);
+  }
+  return $container;
 }
 
 function langHTML(value) {
