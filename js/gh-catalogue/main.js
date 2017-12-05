@@ -7,6 +7,7 @@ function getParamHash() {
     var keySplit = key.split('|');
     var key = keySplit[0];
     var val = keySplit[1];
+    console.log(`parsing param ${key}, found key ${key} and decoded val is ${val}`);
 
     var values = paramHash[key];
     if (!values) {

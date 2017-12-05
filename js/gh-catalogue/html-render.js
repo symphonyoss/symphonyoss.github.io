@@ -23,7 +23,7 @@ function projectHTML(project) {
   var count = 1;
   for (lang in project['languages']) {
     count++;
-    langHTML(encode(lang,'languages')).appendTo($langs);
+    langHTML(toLabel(lang,'languages')).appendTo($langs);
     if (count == 5) break;
   };
   $langs.appendTo($article);
@@ -101,7 +101,7 @@ function filterItemsHTML(filterName, filterValue) {
   var keys = [];
   if (filterName === "languages") {
     for (var lang in filterValue) {
-      keys.push(encode(lang));
+      keys.push(toLabel(lang));
     }
   } else {
     keys.push(filterValue);
@@ -116,14 +116,15 @@ function filterItemsHTML(filterName, filterValue) {
   keys.forEach (function (key) {
     var $option = $("option#"+key);
     if (!$option.length) {
-      var label = encode(key, filterName);
+      var label = toLabel(key, filterName);
       filterItemHTML(key,label).appendTo("select#"+filterName);
     }
   });
 }
 
 function filterItemHTML(id,value) {
-  return $("<option>").attr("name",id).attr("id",id).attr("value",value).text(value);
+  // console.log(`adding filter ${id} with value ${value}`)
+  return $("<option>").attr("name",id).attr("id",id).attr("value",id).text(value);
 }
 
 // ==================
@@ -140,8 +141,10 @@ function sortsHTML(projects) {
       if (options.length === 0) {
         return 'Sort by:';
       } else {
-        return `Sorting by ${$(options).val()} `;
+        return `Sorting by ${toLabel($(options).val(),'sort')} `;
       }
     }
   }).appendTo("ul.navbar-nav");
+  $(`select#sort`).multiselect('deselect','hotness-up');
+  $(`select#sort`).multiselect('select', getParamHash()['sort']);
 }

@@ -10,7 +10,7 @@ function filterProjects(projects) {
 
   // Reset page
   $("#projects").empty();
-  $("#deeplink").attr("href",`/${getParamQuery().slice(0, -1)}`);
+  $("#deeplink").attr("href",`/${getParamQuery()}`);
   if (projects.length == filteredProjects.length) {
     $("#project-recap").text(`${projects.length} (all) projects shown`);
   } else {
@@ -27,14 +27,14 @@ function filterProject(project) {
     var itemRet = false;
     var filterRet = $(`li#${filterName} > span > div > ul > li.active`).length == 0;
     $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {
-      var filterValue = decode($(this).text(),filterName);
-      if (jQuery.type(repoValue) === "string" && decode(repoValue,filterName) == filterValue) {
+      var filterValue = toValue($(this).text(),filterName);
+      if (jQuery.type(repoValue) === "string" && toValue(repoValue,filterName) == filterValue) {
         itemRet = true;
         // console.log(`1. It's a match for ${filterName}=${filterValue}`);
       } else {
           // This is a multi-value filter, like the languages field
           for (key in repoValue) {
-            if (key == decode(filterValue)) {
+            if (key == toValue(filterValue)) {
                 itemRet = true;
                 // console.log(`2. It's a match for ${filterName}=${filterValue}`);
             }

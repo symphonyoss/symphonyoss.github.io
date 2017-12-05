@@ -3,7 +3,7 @@ function sortProjects(projects) {
   // var sort_by = "activity";
   var sortValue = "hotness-up";
   $(`li#sort > span > div > ul > li.active`).each(function(i) {
-    sortValue = decode($(this).text(),'sort');
+    sortValue = toValue($(this).text(),'sort');
     // console.log(`sort value ${$(this).text()}, label ${sortValue}`);
   });
   var sort_by = sortValue.split('-')[0];
@@ -12,8 +12,8 @@ function sortProjects(projects) {
 
   if (sort_by == "hotness") {
     projects.sort(function (a, b) {
-      if (a.hotness > b.hotness) return -1*direction;
-      if (b.hotness > a.hotness) return 1*direction;
+      if (a.hotness < b.hotness) return -1*direction;
+      if (b.hotness < a.hotness) return 1*direction;
       return 0;
     });
   } else if (sort_by == "name") {
