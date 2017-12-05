@@ -33,7 +33,7 @@ function projectHTML(project) {
   $.each(project['repos'], function (i, repo) {
     $("<p>").append(
       $("<a>").attr("href", repoUrl(repo)).text(
-        repo['repositoryName']).attr("class","reponame-position")).appendTo($article).attr("class","line-separation");
+        repo['repositoryName']).attr("class","repo-link")).appendTo($article).attr("class","line-separation");
   });
   return $article;
 }
@@ -41,13 +41,13 @@ function projectHTML(project) {
 function badgeHTML(type,value) {
   var url = `assets/gh-icons/${type.toLowerCase()}.png`;
   var $span = $("<span>").text(value).attr("style","text-align: center");
-  $span.append($("<img id='badges'>").attr("title",type).attr("src",url));
+  $span.append($("<img>").attr("class",'gh-icons').attr("title",type).attr("src",url));
   return $span;
 }
 
 function langHTML(value) {
   var url = `assets/langs/${value.toLowerCase()}.png`;
-  return $("<img id='badges' class='lang-position'>").attr("src",url).attr("title", value);
+  return $("<img>").attr("class",'lang-icons').attr("src",url).attr("title", value);
 }
 
 // ==================

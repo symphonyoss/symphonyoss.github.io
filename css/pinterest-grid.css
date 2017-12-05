@@ -11,9 +11,6 @@ img#logo {
       width:50px;
       margin:10px
 }
-img#badges {
-      width:25px
-}
 
 li {
       margin: 10px;
@@ -84,12 +81,18 @@ img {
       line-height: 22px;
       margin-top: 5%;
 }
-
-.lang-position{
+.gh-icons{
       margin-right: 5%;
       margin-top: 2%;
+      width:25px;
 }
-.reponame-position{
+.lang-icons{
+      margin-right: 5%;
+      margin-top: 2%;
+      height:30px;
+      width:auto;
+}
+.repo-link{
       margin-left: 1%;
       line-height: 30px;
 }
