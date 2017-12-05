@@ -1,42 +1,42 @@
 # symphonyoss.github.io
+Welcome to the Symphony Software Foundation Project Catalogue!
 
-This web page showcases the Symphony Software Foundation project, reporing useful links at the top and a multi-value filter at the top of the page.
+This project (specifically, the `master` branch) powers the web page available at [symphonyoss.github.io](symphonyoss.github.io) (using [GitHub Pages](https://symphonyoss.atlassian.net/wiki/spaces/FM/pages/80945878/Documentation)), an enriched/browsable gallery of our [GitHub hosted projects](github.com/symphonyoss).
 
-## How does it work
-The index.html page uses JQuery to:
-- Fetch Foundation-specific project metadata from [projects.json](projects.json) local file; this content will be automatically updated by external bots managed by the Foundation
-- Render controls on the top of the page that filters in/out projects rendered in the page
-- Render foundation projects in a table grid
-
-## Filtering criteria
-
-Items can be filtered using the following criteria (work in progress):
-- Programming language used in the project
-- Project state, see [Foundation project lifecycle](https://symphonyoss.atlassian.net/wiki/display/FM/Project+Lifecycle)
-- Projects VS Github repositories
-- ...
+The Project Catalogue allows to:
+- Visualise Foundation projects, which aggregate GitHub repositories
+- Filter projects by **language** and **[project lifecycle state](https://symphonyoss.atlassian.net/wiki/spaces/FM/pages/3211338/Project+Lifecycle)**
+- Sort projects (ascending/descending) by **heat** (value that weights all stats extracted from GitHub repositories) and **name**
+- Bookmark URL with filters and sorts
 
 ## Run locally
-In order to avoid frequent calls against the Github API, index.html currently loads local JSON files; when the `filtering` branch is completed, the implementation will be rolled back to use Github API.
-
-To run the website locally you need to have [NodeJS installed](https://nodejs.org/en/).
-
+Please install [nodeJS](https://nodejs.org/en/) before starting.
 ```
 npm install http-server -g
 git clone git@github.com:symphonyoss/symphonyoss.github.io.git
 cd symphonyoss.github.io
-git checkout filtering
 http-server
 ```
-Now you can open your browser on [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
-## Share URL
+## How does it work
+1. `index.html` imports all JS/CSS project contents (including `[js/gh-catalogue/config.js](js/gh-catalogue/config.js)` that defines all rendering configurations and overrides), sets up the main page layout (using the JQuery Pinterst Grid plugin) and invokes `renderProjectCatalogue()` on `[js/gh-catalogue/main.js](js/gh-catalogue/main.js)`.
+2. `renderProjectCatalogue()` scans the contents of a `projects.json` file, which contains all the data that is necessary to render the page; this file is [periodically updated](https://github.com/symphonyoss/symphonyoss.github.io/commits/bootstrap/projects.json) by automated build tasks powered by the Foundation.
+3. `renderProjectCatalogue()` generates sorting and filtering fields, loading the state from current URL
+4. `renderProjectCatalogue()` renders out the project grid, delegating filtering (to `filters.js`) and sorting (to `sort.js`).
 
-You can also use http://rawgit.com/symphonyoss/symphonyoss.github.io/filtering/index.html to preview the page and share improvements.
+All visualisation logic is centralised in `html-render.js`.
 
-## Roadmap
-See https://github.com/symphonyoss/symphonyoss.github.io/issues
+## Libraries
+The Project Catalogue relies on the following external libraries:
+- [JQuery](https://jquery.com/) (v3.2.1)
+- [Bootstrap](https://getbootstrap.com) (v3.3.7)
+- [JS URL](https://github.com/davidstutz/bootstrap-multiselect) (v2.5.2)
+- [Multiselect Bootstrap/JQuery plugin](https://github.com/davidstutz/bootstrap-multiselect)
+- [Pinterest Grid JQuery plugin](https://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html)
 
-## Credits
+## Contribute
+See https://github.com/symphonyoss/symphonyoss.github.io/issues for pending issues.
 
-This project was copied from http://twitter.github.io and heavily changed to adapt it to the Foundation needs.
+The most urgent issues are:
+- Provide a [more modular structure](https://github.com/symphonyoss/symphonyoss.github.io/issues/9) (using tools like Yarn, WebPack, Bower, Browserify, ...)
+- [Embed Project Catalogue as a widget](https://github.com/symphonyoss/symphonyoss.github.io/issues/10) to be visualised on our [Wiki](symphonyoss.atlassian.net/wiki), [website](symphony.foundation), Symphony chat and more
