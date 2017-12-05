@@ -40,14 +40,14 @@ function projectHTML(project) {
 }
 
 function badgeHTML(type,value) {
-  var url = `assets/gh-icons/${type}.png`;
+  var url = `assets/gh-icons/${type.toLowerCase()}.png`;
   var $span = $("<span>").text(value);
   $span.append($("<img id='badges'>").attr("src",url));
   return $span;
 }
 
 function langHTML(value) {
-  var url = `assets/langs/${value}.png`;
+  var url = `assets/langs/${value.toLowerCase()}.png`;
   return $("<img id='badges'>").attr("src",url);
 }
 
