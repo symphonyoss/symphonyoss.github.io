@@ -18,6 +18,8 @@ cd symphonyoss.github.io
 http-server
 ```
 
+`rawgit` allows to preview the page also on other branches forks; example: [rawgit.com/symphonyoss/symphonyoss.github.io/bootstrap/index.html](rawgit.com/symphonyoss/symphonyoss.github.io/bootstrap/index.html).
+
 ## How does it work
 1. `index.html` imports all JS/CSS project contents (including `[js/gh-catalogue/config.js](js/gh-catalogue/config.js)` that defines all rendering configurations and overrides), sets up the main page layout (using the JQuery Pinterst Grid plugin) and invokes `renderProjectCatalogue()` on `[js/gh-catalogue/main.js](js/gh-catalogue/main.js)`.
 2. `renderProjectCatalogue()` scans the contents of a `projects.json` file, which contains all the data that is necessary to render the page; this file is [periodically updated](https://github.com/symphonyoss/symphonyoss.github.io/commits/bootstrap/projects.json) by automated build tasks powered by the Foundation.
@@ -35,7 +37,7 @@ The Project Catalogue relies on the following external libraries:
 - [Pinterest Grid JQuery plugin](https://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html)
 
 ## Contribute
-See https://github.com/symphonyoss/symphonyoss.github.io/issues for pending issues.
+Checkout our [GitHub issues](https://github.com/symphonyoss/symphonyoss.github.io/issues) for pending issues.
 
 The most urgent issues are:
 - Provide a [more modular structure](https://github.com/symphonyoss/symphonyoss.github.io/issues/9) (using tools like Yarn, WebPack, Bower, Browserify, ...)
