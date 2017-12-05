@@ -28,7 +28,7 @@ function projectHTML(project) {
   };
   $langs.appendTo($article);
 
-  $("<p>").text(repoDescription(project['repos'][0])).appendTo($article);
+  // $("<p>").text(repoDescription(project['repos'][0])).appendTo($article);
   // TODO - show project languages
   // $link.append($("<h3>").text(project['languages']));
   $.each(project['repos'], function (i, repo) {

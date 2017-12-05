@@ -22,17 +22,18 @@ var config = {
   },
   "repos" : {
     "symphony-java-client": {
-      "docs": "http://symphonyoss.github.io/symphony-java-client/"
+      "description": "A Java Client (SJC) for the Symphony platform",
+      "docs-link": "http://symphonyoss.github.io/symphony-java-client/"
     },
     "symphony-java-sample-bots": {
-      "docs": "http://symphonyoss.github.io/symphony-java-sample-bots/"
+      "docs-link": "http://symphonyoss.github.io/symphony-java-sample-bots/"
     },
     "ssf-parent-pom": {
-      "docs": "http://symphonyoss.github.io/ssf-parent-pom/",
+      "docs-link": "http://symphonyoss.github.io/ssf-parent-pom/",
       "description" : "the SSF Maven Parent POM"
     },
     "clj-symphony": {
-      "docs": "https://symphonyoss.github.io/clj-symphony/"
+      "docs-link": "https://symphonyoss.github.io/clj-symphony/"
     }
   }
 };
