@@ -1,25 +1,27 @@
 function sortProjects(projects) {
-
   // var sort_by = "activity";
-  var sort_by = "hotness";
+  var sortValue = "hotness-up";
   $(`li#sort > span > div > ul > li.active`).each(function(i) {
-    sort_by = decode($(this).text(),'sort');
-    console.log(`sort value ${$(this).text()}, label ${sort_by}`);
+    sortValue = decode($(this).text(),'sort');
+    console.log(`sort value ${$(this).text()}, label ${sortValue}`);
   });
-  console.log(`Sorting by ${sort_by}`);
+  var sort_by = sortValue.split('-')[0];
+  var direction = (sortValue.split('-')[1] == "up") ? 1 : -1;
+  console.log(`Sorting by ${sort_by}, direction ${direction}`);
 
   if (sort_by == "hotness") {
     projects.sort(function (a, b) {
-      if (a.hotness > b.hotness) return -1;
-      if (b.hotness > a.hotness) return 1;
+      if (a.hotness > b.hotness) return -1*direction;
+      if (b.hotness > a.hotness) return 1*direction;
       return 0;
     });
   } else if (sort_by == "name") {
     projects.sort(function (a, b) {
-      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-      if (b.name.toLowerCase() < a.name.toLowerCase()) return 1;
+      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1*direction;
+      if (b.name.toLowerCase() < a.name.toLowerCase()) return 1*direction;
       return 0;
     });
+  // TODO - as soon as "updated_at" field is in projects.json
   // } else {
   //   projects.sort(function (a, b) {
   //     var a_updated = a['repos'].sort(function(a1,b1) {

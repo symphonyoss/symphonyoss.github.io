@@ -14,8 +14,10 @@ var config = {
   },
   "sort" : {
     "valueLabels" : {
-      "hotness": "Heat",
-      "name": "Name"
+      "hotness-up": "Heat (asc)",
+      "hotness-down": "Heat (desc)",
+      "name-up": "Name (asc)",
+      "name-down": "Name (desc)",
     }
   },
   "repos" : {

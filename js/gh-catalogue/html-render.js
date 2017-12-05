@@ -3,19 +3,33 @@
 // ==================
 
 function projectHTML(project) {
-  var $article = $("<article>").attr("class","white-panel").append(
-    $("<img>").attr("src","https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png")).append(
-      $("<h4>").append(project['name']));
+  // Render lifecycle badge
+  var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
+    $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)).append(
+    $("<h4>").append(project['name'])));
 
-  badgeHTML("lifecycle",project['projectState']).appendTo($article);
-  badgeHTML("forks",project['forks']).appendTo($article);
-  badgeHTML("watchers",project['watchers']).appendTo($article);
-  badgeHTML("stars",project['stars']).appendTo($article);
-  badgeHTML("collaborators",project['collaborators']).appendTo($article);
+  var $row = $("<div class='row'>");
+  badgeHTML("forks",project['forks']).appendTo($row);
+  badgeHTML("watchers",project['watchers']).appendTo($row);
+  $row.appendTo($article);
+  $row = $("<div class='row'>");
+  badgeHTML("stars",project['stars']).appendTo($row);
+  badgeHTML("collaborators",project['collaborators']).appendTo($row);
+  $row.appendTo($article);
+
+  // Render languages
+  var $langs = $("<center>");
+  var count = 1;
+  for (lang in project['languages']) {
+    count++;
+    langHTML(encode(lang,'languages')).appendTo($langs);
+    if (count == 5) break;
+  };
+  $langs.appendTo($article);
+
   $("<p>").text(repoDescription(project['repos'][0])).appendTo($article);
   // TODO - show project languages
   // $link.append($("<h3>").text(project['languages']));
-
   $.each(project['repos'], function (i, repo) {
     $("<p>").append(
       $("<a>").attr("href", repoUrl(repo)).text(
@@ -25,8 +39,15 @@ function projectHTML(project) {
 }
 
 function badgeHTML(type,value) {
-  var url = "";
-  return $("<img>").attr("src",url);
+  var url = `assets/gh-icons/${type}.png`;
+  var $span = $("<span>").text(value);
+  $span.append($("<img id='badges'>").attr("src",url));
+  return $span;
+}
+
+function langHTML(value) {
+  var url = `assets/langs/${value}.png`;
+  return $("<img id='badges'>").attr("src",url);
 }
 
 // ==================
