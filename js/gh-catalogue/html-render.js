@@ -6,8 +6,8 @@ function projectHTML(project) {
   // Render lifecycle badge
   // console.log(`Rendering ${project['name']}`);
   var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
-    $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)).append(
-    $("<h4>").append(project['name'])));
+    $("<h4>").append(project['name'])).append(
+    $("<img style='width:100px'>").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)));
 
   var $row = $("<div class='row badges-row'>");
   badgeHTML("forks",project['forks']).appendTo($row).attr("class","github-stats-space");
@@ -87,7 +87,7 @@ function filtersHTML(projects) {
 }
 
 function filterHTML(id) {
-  var $name = $("<p>").text(id).attr("style","font-size: 18px");
+  var $name = $("<p>").text(toLabel(id,id)).attr("class","filter-label");
   var $li = $("<li>").attr("class","drowdown").attr("id",id);
   var $select = $("<select>")
   .attr("style","visibility:hidden")

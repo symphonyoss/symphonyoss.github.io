@@ -1,3 +1,12 @@
+#project-recap {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.filter-label {
+      font-size: 18px
+}
+
 img#logo {
       width:50px;
       margin:10px
