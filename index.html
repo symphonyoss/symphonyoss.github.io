@@ -1,297 +1,132 @@
 <!DOCTYPE html>
-<!--
-This code was copied from https://github.com/twitter/twitter.github.com/blob/master/index.html and adapted for Symphony Software Foundation needs
--->
 <html>
   <head>
     <title>Symphony Software Foundation</title>
-    <link rel="stylesheet" type="text/css" href="assets/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/grid.css">
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <!-- <link href="//abs.twimg.com/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
-    <!-- <link rel="mask-icon" sizes="any" href="https://abs.twimg.com/a/1468984401/img/t1/favicon.svg" color="#55acee"> -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Documentation for projects hosted by the Foundation.">
-
-    <!-- <meta name="twitter:url" content="https://symphonyoss.github.io" />
-    <meta name="twitter:creator" content="@symphonyOSS" />
-    <meta name="twitter:site" content="@symphonyOSS" />
-    <meta name="twitter:title" content="Symphony Software Foundation" />
-    <meta name="twitter:description" content="A listing of open source projects from the Symphony Software Foundation." />
-    <meta name="twitter:card" content="summary" /> -->
+    <link rel="shortcut icon" href="assets/favicon.ico"/>
+    <meta name="description" content="Projects hosted by the Foundation">
   </head>
   <body>
-    <div id="wrapper" class="grid clearfix">
-      <div id="main" class="grid-1">
-        <div id="logo"><h1>Symphony Software Foundation</h1></div>
-        <h1>Documentation for projects hosted by the Foundation.</h1>
-        <p>Want to join? <a href="https://symphonyoss.atlassian.net/wiki/display/FM/Contribution">Become a Contributor</a></p>
-        <p>More about <a href="https://symphony.foundation/">Symphony Software Foundation</a></p>
-        <p>&nbsp;</p>
-        <p>More about the Foundation:
-        <br/><a href="https://twitter.com/symphonyOSS">Twitter</a>, <a href="http://linkedin.com/company/symphony-software-foundation">LinkedIN</a> and <a href="http://facebook.com/symphonyOSS">Facebook</a></p>
-        <!-- <p>&nbsp;</p>
-        <p><a href="https://brand.twitter.com/">Logos and other goodies</a></p> -->
-      </div>
-
-      <div class="grid grid-3">
-        <div id="statistics" class="grid-1 alpha header">
-          <h1>Statistics</h1>
-          <p>
-            <a href="https://github.com/symphonyoss/repositories"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
-            <!-- <br>
-            <a href="https://github.com/symphonyoss?tab=members"><span id="num-members"><img src="assets/spinner.gif" /></span> members</a> -->
-          </p>
-          <p class="email"><a href="mailto:info@symphony.foundation">info@symphony.foundation</a></p>
+    <nav class="navbar navbar-default">
+      <div class="container navbar-size">
+        <div>
+          <a href="#" style="float: left;"><img src="assets/ssf-logo.png" alt="SymphonySoftwareFoundation" title="SymphonySoftwareFoundation" id='logo'/></a>
+          <p1 class="project-title">Project Catalogue - Symphony Software Foundation</p1>
         </div>
-
-        <div id="recently-updated" class="grid-2 omega header">
-          <h1>Recently updated <a href="https://github.com/symphonyoss/repositories">View All on GitHub</a></h1>
-          <ol id="recently-updated-repos"></ol>
+        <div class="navbar-collapse collapse">
+          <a id="deeplink" class="copy-url" href="#" target="_blank">Copy URL</a>
         </div>
       </div>
+    </nav>
 
-      <ol id="repos"></ol>
+    <div class="container-fluid" role="main">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Browse</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li id="sort">
+                  <p class="filter-label">Sorting</p>
+                  <select id="sort" style="visibility:hidden">
+                    <option id="hotness-down" value="hotness-down">Heat (desc)</option>
+                    <option id="hotness-up" value="hotness-up">Heat (asc)</option>
+                    <option id="name-down" value="name-down">Name (desc)</option>
+                    <option id="name-up" value="name-up">Name (asc)</option>
+                    <!-- <option id="activity" value="Activity" name="Activity">Activity</option> -->
+                  </select>
+                </li><br>
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Welcome!</h3>
+            </div>
+            <div class="panel-body">
+              Welcome to the Project Catalogue of the <a href="symphony.foundation" target="_blank">Symphony Software Foundation</a>! Projects that are hosted on our <a href="github.com/symphonyoss">GitHub Organisation</a> are browsable from this page, which adds Foundation-specific metadata (such as the <a href="https://symphonyoss.atlassian.net/wiki/spaces/FM/pages/3211338/Project+Lifecycle">project lifecycle badge</a>) on top of stats crawled via GitHub API.
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">How to use the Project Catalogue</h3>
+            </div>
+            <div class="panel-body">
+              The default page shows all our projects ordered by <b><i>heat</i></b>, a value that weights all the GitHub stats shown for each project, but you can change the ordering by using the first dropdown at the top of the page.<br/><br/>
+              Projects can be filtered by project state AND language; if a filter has multiple values, they'll be combined with an OR operator (ie, to show all projects with "Java" OR "Javascript", simply check both entries)<br/><br/>
+              Use the <b><i>Copy URL</i></b> link on the top right to save the URL and restore the state of the page, exactly where you left.
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">What's next?</h3>
+            </div>
+            <div class="panel-body">
+              Want to contribute your OSS project with the Foundation <a href="https://symphonyoss.atlassian.net/wiki/display/FM/Contribution">Become a Contributor today</a> or read more about our Foundation:
+              <br/>
+              <ul>
+                <li><a href="http://symphonyoss.atlassian.net/wiki" target="_blank">Wiki</a></li>
+                <li><a href="http://github.com/symphonyoss" target="_blank">SymphonyOSS on Github</a></li>
+                <li><a href="https://twitter.com/symphonyOSS" target="_blank">Twitter</a></li>
+                <li><a href="http://linkedin.com/company/symphony-software-foundation" target="_blank">LinkedIN</a></li>
+                <li><a href="http://facebook.com/symphonyOSS" target="_blank">Facebook</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9 row">
+          <div>
+          <h3 id="project-recap" href="#">All Projects</h3>
+          </div>
+          <section id="projects"/>
+        </div>
+      </div>      
     </div>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript" src="js/analytics.js"></script>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Multi select banner -->
+    <!-- https://github.com/davidstutz/bootstrap-multiselect -->
+    <script type="text/javascript" src="https://www.jquery-az.com/boots/js/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css"/>
+
+    <!-- JS URL -->
+    <!-- https://github.com/websanova/js-url -->
+    <script type="text/javascript" src="js/ext/url.min.js"></script>
+
+    <!-- Pinterest Grid for JQuery -->
+    <!-- https://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html -->
+    <script type="text/javascript" src="js/ext/pinterest_grid.js"></script>
+    <link rel="stylesheet" href="css/pinterest-grid.css" type="text/css"/>
+
+    <!-- Custom JS -->
+    <script type="text/javascript" src="js/gh-catalogue/config.js"></script>
+    <script type="text/javascript" src="js/gh-catalogue/utils.js"></script>
+    <script type="text/javascript" src="js/gh-catalogue/html-render.js"></script>
+    <script type="text/javascript" src="js/gh-catalogue/sort.js"></script>
+    <script type="text/javascript" src="js/gh-catalogue/filters.js"></script>
+    <script type="text/javascript" src="js/gh-catalogue/main.js"></script>
     <script type="text/javascript">
+      (function ($, undefined) {
+        renderProjectCatalogue(true);
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-39101739-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-    </script>
-    <script type="text/javascript" src="assets/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="assets/strftime.js"></script>
-    <script type="text/javascript">
-    (function ($, undefined) {
-
-      // Put custom repo URL's in this object, keyed by repo name.
-      var repoUrls = {
-        "symphony-java-client": "http://symphonyoss.github.io/symphony-java-client/",
-        "symphony-java-sample-bots": "http://symphonyoss.github.io/symphony-java-sample-bots/",
-        "ssf-parent-pom": "http://symphonyoss.github.io/ssf-parent-pom/",
-        "clj-symphony": "https://symphonyoss.github.io/clj-symphony/"
-      };
-
-      function repoUrl(repo) {
-        return repoUrls[repo.name] || repo.html_url;
-      }
-
-      // Put custom repo descriptions in this object, keyed by repo name.
-      var repoDescriptions = {
-        "naggati2": "A protocol builder for Netty using Scala 2.8"
-      };
-
-      function repoDescription(repo) {
-        return repoDescriptions[repo.name] || repo.description;
-      }
-
-      function addRecentlyUpdatedRepo(repo) {
-        var $item = $("<li>");
-
-        var $name = $("<a>").attr("href", repo.html_url).text(repo.name);
-        $item.append($("<span>").addClass("name").append($name));
-
-        var $time = $("<a>").attr("href", repo.html_url + "/commits").text(strftime("%h %e, %Y", repo.pushed_at));
-        $item.append($("<span>").addClass("time").append($time));
-
-        $item.append('<span class="bullet">&sdot;</span>');
-
-        var $watchers = $("<a>").attr("href", repo.html_url + "/stargazers").text(repo.stargazers_count + " stargazers");
-        $item.append($("<span>").addClass("watchers").append($watchers));
-
-        $item.append('<span class="bullet">&sdot;</span>');
-
-        var $forks = $("<a>").attr("href", repo.html_url + "/network").text(repo.forks_count + " forks");
-        $item.append($("<span>").addClass("forks").append($forks));
-
-        $item.appendTo("#recently-updated-repos");
-      }
-
-      function addRepo(repo) {
-        var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
-        var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
-        $link.append($("<h2>").text(repo.name));
-        $link.append($("<h3>").text(repo.language));
-        $link.append($("<p>").text(repoDescription(repo)));
-        $item.appendTo("#repos");
-      }
-
-      function addRepos(repos, page) {
-        repos = repos || [];
-        page = page || 1;
-
-        var uri = "https://api.github.com/orgs/symphonyoss/repos?callback=?"
-                + "&per_page=100"
-                + "&page="+page;
-
-        $.getJSON(uri, function (result) {
-          if (result.data && result.data.length > 0) {
-            repos = repos.concat(result.data);
-            addRepos(repos, page + 1);
-          }
-          else {
-            $(function () {
-              $("#num-repos").text(repos.length);
-
-              // Convert pushed_at to Date.
-              $.each(repos, function (i, repo) {
-                repo.pushed_at = new Date(repo.pushed_at);
-
-                var weekHalfLife  = 1.146 * Math.pow(10, -9);
-
-                var pushDelta    = (new Date) - Date.parse(repo.pushed_at);
-                var createdDelta = (new Date) - Date.parse(repo.created_at);
-
-                var weightForPush = 1;
-                var weightForWatchers = 1.314 * Math.pow(10, 7);
-
-                repo.hotness = weightForPush * Math.pow(Math.E, -1 * weekHalfLife * pushDelta);
-                repo.hotness += weightForWatchers * repo.watchers / createdDelta;
-              });
-
-              // Sort by highest # of watchers.
-              repos.sort(function (a, b) {
-                if (a.hotness < b.hotness) return 1;
-                if (b.hotness < a.hotness) return -1;
-                return 0;
-              });
-
-              $.each(repos, function (i, repo) {
-                addRepo(repo);
-              });
-
-              // Sort by most-recently pushed to.
-              repos.sort(function (a, b) {
-                if (a.pushed_at < b.pushed_at) return 1;
-                if (b.pushed_at < a.pushed_at) return -1;
-                return 0;
-              });
-
-              $.each(repos.slice(0, 3), function (i, repo) {
-                addRecentlyUpdatedRepo(repo);
-              });
-            });
-          }
+        $('#projects').pinterest_grid({
+          no_columns: 4,
+          padding_x: 20,
+          padding_y: 20,
+          margin_bottom: 50,
+          single_column_breakpoint: 700
         });
-      }
-      addRepos();
-
-      // Disabled - not needed for now
-      //get total number of Twitter members
-      // function getNumMembers(page, numMembers) {
-      //   var page = page || 1;
-      //   var numMembers = numMembers || 0;
-      //   var membersUri = "https://api.github.com/orgs/symphonyoss/members?callback=?"
-      //     + "&per_page=100"
-      //     + "&page="+page;
-      //
-      //   $.getJSON(membersUri, function (result) {
-      //     if (result.data && result.data.length > 0) {
-      //       numMembers += result.data.length;
-      //       getNumMembers(page+1, numMembers);
-      //     } else {
-      //       $(function () {
-      //         $("#num-members").text(numMembers);
-      //       });
-      //     }
-      //   });
-      // }
-      // getNumMembers();
-
-      function randomItem(array) {
-        return array[Math.floor(Math.random() * array.length)];
-      }
-
-      var $flyzone;
-
-      function flyzone() {
-        if (!$flyzone) {
-          $flyzone = $("<div>").attr("id", "flyzone").prependTo(document.body);
-        }
-
-        return $flyzone;
-      }
-
-      var sizes = ["smaller", "small", "medium", "large", "fat"];
-
-      var sizeDimensions = {
-        "smaller": 50,
-        "small": 80,
-        "medium": 130,
-        "large": 200,
-        "fat": 300
-      };
-
-      function randomOpacity(threshold) {
-        var opacity = Math.random();
-
-        while (opacity < threshold) {
-          opacity = Math.random();
-        }
-
-        return opacity;
-      }
-
-      function makeLarry(sizeName, speed) {
-        var size = sizeDimensions[sizeName];
-        var top = Math.floor((flyzone().height() - size) * Math.random());
-
-        var $img = $("<img>")
-          .addClass("larry size-" + sizeName)
-          .attr("src", "assets/larry.png")
-          .attr("width", size)
-          .attr("height", size)
-          .css({
-            position: "absolute",
-            opacity: randomOpacity(0.4),
-            top: top,
-            left: -size
-          });
-
-        $img.prependTo(flyzone());
-
-        var left = flyzone().width() + size;
-
-        $img.animate({left: left}, speed, function () {
-          $img.remove();
-          makeRandomLarry();
-        });
-
-        return $img;
-      }
-
-      function makeRandomLarry() {
-        var size = randomItem(sizes);
-        var speed = Math.floor(Math.random() * 20000) + 15000;
-        return makeLarry(size, speed);
-      }
-
-      $(function () {
-        $("#logo").click(function () {
-          makeRandomLarry();
-        });
-      });
-
-      var match = (/\blarry(=(\d+))?\b/i).exec(window.location.search);
-
-      if (match) {
-        var n = parseInt(match[2]) || 20;
-
-        $(function () {
-          for (var i = 0; i < n; ++i) {
-            setTimeout(makeRandomLarry, Math.random() * n * 500);
-          }
-        });
-      }
-    })(jQuery);
+      })(jQuery);
     </script>
   </body>
 </html>
