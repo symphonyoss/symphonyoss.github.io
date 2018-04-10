@@ -1,29 +1,29 @@
-function filterProjects(projects) {
+function filterActivities(activities) {
   // Filter only if there are some filter values defined
-  var filteredProjects = projects;
+  var filteredActivities = activities;
   if (getParamQuery() != '#') {
-    filteredProjects = projects.filter(function(project) {
-      // Invoke filters.js - filter projects based on filter values
-      return filterProject(project);
+    filteredActivities = activities.filter(function(activity) {
+      // Invoke filters.js - filter activities based on filter values
+      return filterActivity(activity);
     });
   }
 
   // Reset page
-  $("#projects").empty();
+  $("#activities").empty();
   $("#deeplink").attr("href",`/${getParamQuery()}`);
-  if (projects.length == filteredProjects.length) {
-    $("#project-recap").text(`${projects.length} (all) projects shown`);
+  if (activities.length == filteredActivities.length) {
+    $("#activity-recap").text(`${activities.length} (all) activities shown`);
   } else {
-    $("#project-recap").text(`${filteredProjects.length}/${projects.length} projects shown`);
+    $("#activity-recap").text(`${filteredActivities.length}/${activities.length} activities shown`);
   }
-  return filteredProjects;
+  return filteredActivities;
 }
 
 // Return true if at least one of the repos matches
-function filterProject(project) {
+function filterActivity(activity) {
   var ret = true;
   for (filterName in config['filters']) {
-    var repoValue = project[filterName];
+    var repoValue = activity[filterName];
     var itemRet = false;
     var filterRet = $(`li#${filterName} > span > div > ul > li.active`).length == 0;
     $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {
@@ -43,6 +43,6 @@ function filterProject(project) {
     });
     if (!itemRet && !filterRet) ret = false;
   }
-  // console.log(`3. return ${ret} for ${project['name']}`);
+  // console.log(`3. return ${ret} for ${activity['name']}`);
   return ret;
 }

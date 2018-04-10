@@ -20,23 +20,23 @@ function getParamHash() {
   return paramHash;
 }
 
-function renderProjectCatalogue(firstRun) {
-  $.get("projects.json", function (projects) {
+function renderCatalogue(firstRun) {
+  $.get("activities.json", function (activities) {
     if (firstRun) {
       // Invoke html-render.js
-      filtersHTML(projects);
-      sortsHTML(projects);
+      filtersHTML(activities['activities']);
+      sortsHTML(activities['activities']);
     }
 
     // Invoke filters.js
-    var filteredProjects = filterProjects(projects);
+    var filteredActivities = filterActivities(activities['activities']);
 
     // Invoke sort.js
-    sortProjects(filteredProjects);
+    sortActivities(filteredActivities);
 
-    // Invoke html-render.js - render out projects
-    $.each(filteredProjects, function (projectIdx, project) {
-      projectHTML(project).appendTo("#projects");
+    // Invoke html-render.js - render out activities
+    $.each(filteredActivities, function (activityIdx, activity) {
+      activityHTML(activity).appendTo("#activities");
     });
   });
 }

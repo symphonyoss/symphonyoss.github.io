@@ -3,8 +3,8 @@ var config = {
     "languages" : {
       "label" : "Language"
     },
-    "projectState" : {
-      "label" : "Project State",
+    "activityState" : {
+      "label" : "Activity State",
       "valueLabels" : {
         "INCUBATING": "Incubating",
         "RELEASED": "Released",

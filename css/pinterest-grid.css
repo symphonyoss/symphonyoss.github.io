@@ -2,10 +2,10 @@
       text-align: center;
 }
 
-img.project-state-badge {
+img.activity-state-badge {
       width:100px
 }
-#project-recap {
+#activity-recap {
     margin-top: 0px;
     margin-bottom: 30px;
 }
@@ -27,7 +27,7 @@ li {
       vertical-align: middle;
 }
 
-#projects {
+#activities {
       position: relative;
       max-width: 100%;
       width: 100%;

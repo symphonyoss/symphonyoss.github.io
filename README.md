@@ -21,10 +21,10 @@ http-server
 `rawgit` allows to preview the page also on other branches forks; example: [rawgit.com/symphonyoss/symphonyoss.github.io/bootstrap/index.html](rawgit.com/symphonyoss/symphonyoss.github.io/bootstrap/index.html).
 
 ## How does it work
-1. `index.html` imports all JS/CSS project contents (including `[js/gh-catalogue/config.js](js/gh-catalogue/config.js)` that defines all rendering configurations and overrides), sets up the main page layout (using the JQuery Pinterst Grid plugin) and invokes `renderProjectCatalogue()` on `[js/gh-catalogue/main.js](js/gh-catalogue/main.js)`.
-2. `renderProjectCatalogue()` scans the contents of a `projects.json` file, which contains all the data that is necessary to render the page; this file is [periodically updated](https://github.com/symphonyoss/symphonyoss.github.io/commits/bootstrap/projects.json) by automated build tasks powered by the Foundation.
-3. `renderProjectCatalogue()` generates sorting and filtering fields, loading the state from current URL
-4. `renderProjectCatalogue()` renders out the project grid, delegating filtering (to `filters.js`) and sorting (to `sort.js`).
+1. `index.html` imports all JS/CSS project contents (including `[js/gh-catalogue/config.js](js/gh-catalogue/config.js)` that defines all rendering configurations and overrides), sets up the main page layout (using the JQuery Pinterst Grid plugin) and invokes `renderCatalogue()` on `[js/gh-catalogue/main.js](js/gh-catalogue/main.js)`.
+2. `renderCatalogue()` scans the contents of a `activities.json` file, which contains all the data that is necessary to render the page; this file is [periodically updated](https://github.com/symphonyoss/symphonyoss.github.io/commits/bootstrap/activities.json) by automated build tasks powered by the Foundation.
+3. `renderCatalogue()` generates sorting and filtering fields, loading the state from current URL
+4. `renderCatalogue()` renders out the project grid, delegating filtering (to `filters.js`) and sorting (to `sort.js`).
 
 All visualisation logic is centralised in `html-render.js`.
 

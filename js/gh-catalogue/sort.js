@@ -1,4 +1,4 @@
-function sortProjects(projects) {
+function sortActivities(activities) {
   // TODO - set as default as soon as available?
   // var sort_by = "activity";
   var sortValue = "hotness-up";
@@ -11,20 +11,20 @@ function sortProjects(projects) {
   // console.log(`Sorting by ${sort_by}, direction ${direction}`);
 
   if (sort_by == "hotness") {
-    projects.sort(function (a, b) {
+    activities.sort(function (a, b) {
       if (a.hotness < b.hotness) return -1*direction;
       if (b.hotness < a.hotness) return 1*direction;
       return 0;
     });
   } else if (sort_by == "name") {
-    projects.sort(function (a, b) {
+    activities.sort(function (a, b) {
       if (a.name.toLowerCase() < b.name.toLowerCase()) return -1*direction;
       if (b.name.toLowerCase() < a.name.toLowerCase()) return 1*direction;
       return 0;
     });
-  // TODO - as soon as "updated_at" field is in projects.json
+  // TODO - as soon as "updated_at" field is in activities.json
   // } else {
-  //   projects.sort(function (a, b) {
+  //   activities.sort(function (a, b) {
   //     var a_updated = a['repos'].sort(function(a1,b1) {
   //       return new Date(b1.updated_at).getTime() - new Date(a1.updated_at).getTime() 
   //     })[0].updated_at;

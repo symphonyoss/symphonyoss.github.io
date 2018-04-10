@@ -1,39 +1,44 @@
 // ==================
-// Projects functions
+// HTML functions
 // ==================
 
-function projectHTML(project) {
+function activityHTML(activity) {
   // Render lifecycle badge
-  // console.log(`Rendering ${project['name']}`);
+  // console.log(`Rendering ${activity['name']}`);
   var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
-    $("<h4>").append(project['name'])).append(
-    $("<img>").attr("class","project-state-badge").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${project['projectState'].toLowerCase()}.svg`)));
+    $("<h4>").append(activity['activityName'])).append(
+    $("<img>").attr("class","activity-state-badge").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${activity['state'].toLowerCase()}.svg`)));
 
   var $row = $("<div class='row badges-row'>");
-  badgeHTML("forks",project['forks']).appendTo($row).attr("class","github-stats-space");
-  badgeHTML("watchers",project['watchers'],"left").appendTo($row);
-  $row.appendTo($article);
-  $row = $("<div class='row badges-row'>");
-  badgeHTML("stars",project['stars'],"right").appendTo($row).attr("class","github-stats-space");
-  badgeHTML("collaborators",project['collaborators'],"left").appendTo($row);
-  $row.appendTo($article);
+  stats = activity['cumulativeGitHubStats']
+  if (stats) {
+    badgeHTML("forks",stats['forks']).appendTo($row).attr("class","github-stats-space");
+    badgeHTML("watchers",stats['watchers'],"left").appendTo($row);
+    $row.appendTo($article);
+    $row = $("<div class='row badges-row'>");
+    badgeHTML("stars",stats['stars'],"right").appendTo($row).attr("class","github-stats-space");
+    badgeHTML("collaborators",stats['collaborators'],"left").appendTo($row);
+    $row.appendTo($article);
+  }
 
   // Render languages
   var $langs = $("<center>");
   var count = 1;
-  for (lang in project['languages']) {
-    count++;
-    langHTML(toLabel(lang,'languages')).appendTo($langs);
-    if (count == 6) break;
-  };
-  $langs.appendTo($article);
+  if (stats && stats['languages']) {
+    for (lang in stats['languages']) {
+      count++;
+      langHTML(toLabel(lang,'languages')).appendTo($langs);
+      if (count == 6) break;
+    };
+    $langs.appendTo($article);
+  }
 
-  // TODO - show a project description, when available in projects.json
-  // $("<p>").text(repoDescription(project['description'])).appendTo($article);
-  $.each(project['repos'], function (i, repo) {
+  // TODO - show a activity description, when available in activities.json
+  // $("<p>").text(repoDescription(activity['description'])).appendTo($article);
+  $.each(activity['gitHubRepos'], function (i, repo) {
     $("<p>").append(
       $("<a>").attr("href", repoUrl(repo)).text(
-        repo['repositoryName']).attr("class","repo-link")).appendTo($article).attr("class","line-separation");
+        repo['name']).attr("class","repo-link")).appendTo($article).attr("class","line-separation");
   });
   return $article;
 }
@@ -60,10 +65,10 @@ function langHTML(value) {
 // Filters functions
 // ==================
 
-function filtersHTML(projects) {  
+function filtersHTML(activities) {
   for (filterName in config['filters']) {
-    $.each(projects, function (i, project) {
-      var repoValue = project[filterName];
+    $.each(activities, function (i, activity) {
+      var repoValue = activity[filterName];
       if (repoValue) {
         filterItemsHTML(filterName,repoValue);
       }
@@ -73,7 +78,7 @@ function filtersHTML(projects) {
       maxHeight: 200,
       onChange: function(option, checked, select) {
         var paramHash = getParamHash();
-        renderProjectCatalogue(false,paramHash);
+        renderCatalogue(false,paramHash);
       }
     });
     $(`select#${filterName}`).multiselect('select', getParamHash()[filterName]);
@@ -139,11 +144,11 @@ function filterItemHTML(id,value) {
 // Sort functions
 // ==================
 
-function sortsHTML(projects) {
+function sortsHTML(activities) {
   // Using Bootstrap multi-select, see index.html for import
   $("select#sort").multiselect({
     onChange: function(option, checked, select) {
-      renderProjectCatalogue(false);
+      renderCatalogue(false);
     },
     buttonText: function(options, select) {
       if (options.length === 0) {

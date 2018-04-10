@@ -48,7 +48,7 @@ function getParamQuery() {
 }
 
 // ==================
-// Projects functions
+// Activities functions
 // ==================
 
 function getConfigField(repo,field) {
