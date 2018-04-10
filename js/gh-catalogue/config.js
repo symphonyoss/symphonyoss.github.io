@@ -1,15 +1,33 @@
 var config = {
   "filters" : {
-    "languages" : {
-      "label" : "Language"
+    "programName" : {
+      "label" : "Program",
+      "valueLabels" : {
+        "FDC3": "FDC3",
+        "Hadouken":"Hadouken",
+        "Symphony":"Symphony",
+        "Voice":"Voice"
+      }
     },
-    "activityState" : {
-      "label" : "Activity State",
+    "type" : {
+      "label" : "Type",
+      "valueLabels" : {
+        "PROJECT": "Project",
+        "WORKING_GROUP":"Working Group"
+      }
+    },
+    "state" : {
+      "label" : "State",
       "valueLabels" : {
         "INCUBATING": "Incubating",
         "RELEASED": "Released",
-        "ARCHIVED": "Archived"
+        "ARCHIVED": "Archived",
+        "OPERATING": "Operating",
+        "PAUSED": "Paused"
       }
+    },
+    "languages" : {
+      "label" : "Language"
     }
   },
   "sort" : {

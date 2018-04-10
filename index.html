@@ -23,20 +23,27 @@
         <div class="col-sm-3">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Browse</h3>
+              <h3 class="panel-title">Browse Activities</h3>
             </div>
             <div class="panel-body">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav activities-container">
+              </ul>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sort Activities</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="nav navbar-nav sorts-container">
                 <li id="sort">
-                  <p class="filter-label">Sorting</p>
                   <select id="sort" style="visibility:hidden">
                     <option id="hotness-down" value="hotness-down">Heat (desc)</option>
                     <option id="hotness-up" value="hotness-up">Heat (asc)</option>
                     <option id="name-down" value="name-down">Name (desc)</option>
                     <option id="name-up" value="name-up">Name (asc)</option>
-                    <!-- <option id="activity" value="Activity" name="Activity">Activity</option> -->
                   </select>
-                </li><br>
+                </li>
               </ul>
             </div>
           </div>
@@ -106,7 +113,7 @@
     <!-- Pinterest Grid for JQuery -->
     <!-- https://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html -->
     <script type="text/javascript" src="js/ext/pinterest_grid.js"></script>
-    <link rel="stylesheet" href="css/pinterest-grid.css" type="text/css"/>
+    <link rel="stylesheet" href="css/catalogue.css" type="text/css"/>
 
     <!-- Custom JS -->
     <script type="text/javascript" src="js/gh-catalogue/config.js"></script>

@@ -5,8 +5,10 @@
 function activityHTML(activity) {
   // Render lifecycle badge
   // console.log(`Rendering ${activity['name']}`);
-  var $article = $("<article>").attr("class","white-panel").append($("<center>").append(
-    $("<h4>").append(activity['activityName'])).append(
+  var state_class = `${activity['state'].toLowerCase()}-activity-state`;
+  var type_class = `${activity['type'].toLowerCase()}-activity-type`;
+  var $article = $("<article>").attr("class","white-panel "+type_class+" "+state_class).append($("<center>").append(
+    $("<h4>").append(activity['activityName'])).append($("<h5>").append(`[ ${activity['programName']} Program ]`)).append(
     $("<img>").attr("class","activity-state-badge").attr("src",`https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-${activity['state'].toLowerCase()}.svg`)));
 
   var $row = $("<div class='row badges-row'>");
@@ -68,7 +70,10 @@ function langHTML(value) {
 function filtersHTML(activities) {
   for (filterName in config['filters']) {
     $.each(activities, function (i, activity) {
-      var repoValue = activity[filterName];
+      var repoValue = activity[filterName]
+      if (activity['cumulativeGitHubStats'] && activity['cumulativeGitHubStats'][filterName]) {
+        repoValue = activity['cumulativeGitHubStats'][filterName]
+      }
       if (repoValue) {
         filterItemsHTML(filterName,repoValue);
       }
@@ -123,7 +128,7 @@ function filterItemsHTML(filterName, filterValue) {
   var $select = $("select#"+filterName);
   if (!$select.length) {
     $select = filterHTML(filterName);
-    $select.appendTo("ul.navbar-nav").after('<br />');
+    $select.appendTo("ul.activities-container").after('<br />');
   }
   
   keys.forEach (function (key) {
@@ -157,7 +162,7 @@ function sortsHTML(activities) {
         return `Sorting by ${toLabel($(options).val(),'sort')} `;
       }
     }
-  }).appendTo("ul.navbar-nav");
+  }).appendTo("ul.sorts-container");
   $(`select#sort`).multiselect('deselect','hotness-up');
   $(`select#sort`).multiselect('select', getParamHash()['sort']);
 }

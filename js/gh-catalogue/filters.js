@@ -24,6 +24,9 @@ function filterActivity(activity) {
   var ret = true;
   for (filterName in config['filters']) {
     var repoValue = activity[filterName];
+    if (activity['cumulativeGitHubStats'] && activity['cumulativeGitHubStats'][filterName]) {
+      repoValue = activity['cumulativeGitHubStats'][filterName]
+    }
     var itemRet = false;
     var filterRet = $(`li#${filterName} > span > div > ul > li.active`).length == 0;
     $(`li#${filterName} > span > div > ul > li.active`).each(function(i) {

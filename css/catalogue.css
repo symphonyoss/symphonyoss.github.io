@@ -64,6 +64,7 @@ img {
 }
 /* NAVBAR CSS */
 .copy-url{
+      align: right;
       float: right;
       line-height: 70px;
       font-size: 24px;
@@ -107,3 +108,20 @@ img {
 .github-stats-space{
       margin-right: 15%;
 }
+
+
+/* Activity states and types */
+
+.project-activity-type {
+      background-color:#F4DC85;
+}
+
+.working_group-activity-type {
+      background-color:#97EAF4;
+}
+
+.incubating-activity-state {}
+.released-activity-state {}
+.archived-activity-state {}
+.operating-activity-state {}
+.paused-activity-state {}
